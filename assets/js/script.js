@@ -143,6 +143,31 @@ async function completeRound() {
     await playSequence();
 }
 
+function endGame() {
+    gameState.isPlaying = false;
+    gameState.isShowingSequence = false;
+    gameMessage.textContent = `Game over. Final score: ${gameState.score}.`;
+    lastResult.textContent = `Score ${gameState.score} in round ${gameState.round} on ${gameState.difficulty} mode.`;
+    difficultySelect.disabled = false;
+    startButton.disabled = false;
+    setTilesDisabled(true);
+}
+
+async function handleWrongInput() {
+    gameState.lives -= 1;
+    renderStatus();
+
+    if (gameState.lives <= 0) {
+        endGame();
+        return;
+    }
+
+    gameState.playerInput = [];
+    gameMessage.textContent = `${gameState.lives} lives left. Watch the round again.`;
+    await wait(1000);
+    await playSequence();
+}
+
 async function handleTileClick(event) {
     if (!gameState.isPlaying || gameState.isShowingSequence) {
         return;
@@ -154,6 +179,11 @@ async function handleTileClick(event) {
     await highlightTile(selectedTile);
 
     const inputResult = checkPlayerInput();
+
+    if (inputResult === "wrong") {
+        await handleWrongInput();
+        return;
+    }
 
     if (inputResult === "complete") {
         await completeRound();
