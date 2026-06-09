@@ -10,6 +10,8 @@ const savedHighScore = document.querySelector("#saved-high-score");
 const gameMessage = document.querySelector("#game-message");
 const lastResult = document.querySelector("#last-result");
 const clearHighScoreButton = document.querySelector("#clear-high-score-button");
+const heroStartLink = document.querySelector("#hero-start-link");
+const gameSection = document.querySelector("#play-game");
 const highScoreStorageKey = "pixelQuestHighScore";
 
 const difficultySettings = {
@@ -232,6 +234,16 @@ async function startGame() {
     await playSequence();
 }
 
+async function handleHeroStart(event) {
+    event.preventDefault();
+    gameSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    gameSection.focus({ preventScroll: true });
+
+    if (!gameState.isPlaying) {
+        await startGame();
+    }
+}
+
 function updateDifficulty() {
     gameState.difficulty = difficultySelect.value;
     gameState.lives = difficultySettings[gameState.difficulty].lives;
@@ -247,6 +259,7 @@ function initGame() {
     resetButton.addEventListener("click", resetGame);
     difficultySelect.addEventListener("change", updateDifficulty);
     clearHighScoreButton.addEventListener("click", clearHighScore);
+    heroStartLink.addEventListener("click", handleHeroStart);
     gameTiles.forEach((tile) => {
         tile.addEventListener("click", handleTileClick);
     });
