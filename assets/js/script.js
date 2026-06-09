@@ -10,6 +10,7 @@ const savedHighScore = document.querySelector("#saved-high-score");
 const gameMessage = document.querySelector("#game-message");
 const lastResult = document.querySelector("#last-result");
 const clearHighScoreButton = document.querySelector("#clear-high-score-button");
+const highScoreStorageKey = "pixelQuestHighScore";
 
 const difficultySettings = {
     easy: {
@@ -53,6 +54,28 @@ function renderStatus() {
     livesDisplay.textContent = gameState.lives;
     highScoreDisplay.textContent = gameState.highScore;
     savedHighScore.textContent = gameState.highScore;
+}
+
+function loadHighScore() {
+    const savedScore = Number(localStorage.getItem(highScoreStorageKey));
+
+    gameState.highScore = Number.isNaN(savedScore) ? 0 : savedScore;
+}
+
+function saveHighScore() {
+    if (gameState.score <= gameState.highScore) {
+        return;
+    }
+
+    gameState.highScore = gameState.score;
+    localStorage.setItem(highScoreStorageKey, String(gameState.highScore));
+}
+
+function clearHighScore() {
+    localStorage.removeItem(highScoreStorageKey);
+    gameState.highScore = 0;
+    gameMessage.textContent = "High score cleared.";
+    renderStatus();
 }
 
 function resetGame() {
@@ -144,6 +167,7 @@ async function completeRound() {
 }
 
 function endGame() {
+    saveHighScore();
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
     gameMessage.textContent = `Game over. Final score: ${gameState.score}.`;
@@ -151,6 +175,7 @@ function endGame() {
     difficultySelect.disabled = false;
     startButton.disabled = false;
     setTilesDisabled(true);
+    renderStatus();
 }
 
 async function handleWrongInput() {
@@ -215,11 +240,13 @@ function updateDifficulty() {
 }
 
 function initGame() {
+    loadHighScore();
     setTilesDisabled(true);
     renderStatus();
     startButton.addEventListener("click", startGame);
     resetButton.addEventListener("click", resetGame);
     difficultySelect.addEventListener("change", updateDifficulty);
+    clearHighScoreButton.addEventListener("click", clearHighScore);
     gameTiles.forEach((tile) => {
         tile.addEventListener("click", handleTileClick);
     });
