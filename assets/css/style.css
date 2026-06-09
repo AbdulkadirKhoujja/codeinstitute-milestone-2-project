@@ -230,3 +230,89 @@ p {
     counter-increment: steps;
     font-weight: 700;
 }
+
+.game-section {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.game-shell {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(7rem, 1fr));
+    gap: 0.75rem;
+    width: min(100%, 28rem);
+    aspect-ratio: 1;
+}
+
+.game-tile {
+    min-height: 7rem;
+    border: 3px solid rgba(255, 255, 255, 0.22);
+    border-radius: var(--radius);
+    cursor: pointer;
+    opacity: 0.82;
+    transition: filter 160ms ease, opacity 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.game-tile:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 3px;
+}
+
+.game-tile:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.game-tile.is-active,
+.game-tile:not(:disabled):hover {
+    filter: brightness(1.45);
+    opacity: 1;
+    transform: scale(1.03);
+    box-shadow: 0 0 28px currentColor;
+}
+
+.tile-cyan {
+    background: var(--color-cyan);
+    color: var(--color-cyan);
+}
+
+.tile-pink {
+    background: var(--color-pink);
+    color: var(--color-pink);
+}
+
+.tile-yellow {
+    background: var(--color-yellow);
+    color: var(--color-yellow);
+}
+
+.tile-green {
+    background: var(--color-green);
+    color: var(--color-green);
+}
+
+.game-panel,
+.scores-panel {
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+}
+
+.game-message {
+    min-height: 3.5rem;
+    margin: 1rem 0;
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.game-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
