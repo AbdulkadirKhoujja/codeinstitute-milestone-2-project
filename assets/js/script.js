@@ -55,9 +55,41 @@ function renderStatus() {
     savedHighScore.textContent = gameState.highScore;
 }
 
+function resetGame() {
+    gameState.sequence = [];
+    gameState.playerInput = [];
+    gameState.score = 0;
+    gameState.round = 0;
+    gameState.lives = difficultySettings[gameState.difficulty].lives;
+    gameState.isPlaying = false;
+    gameState.isShowingSequence = false;
+    gameMessage.textContent = "Choose a difficulty and press start.";
+    difficultySelect.disabled = false;
+    startButton.disabled = false;
+    setTilesDisabled(true);
+    renderStatus();
+}
+
+function startGame() {
+    gameState.sequence = [];
+    gameState.playerInput = [];
+    gameState.score = 0;
+    gameState.round = 0;
+    gameState.lives = difficultySettings[gameState.difficulty].lives;
+    gameState.isPlaying = true;
+    gameState.isShowingSequence = false;
+    gameMessage.textContent = "Game started. Watch the grid.";
+    difficultySelect.disabled = true;
+    startButton.disabled = true;
+    setTilesDisabled(true);
+    renderStatus();
+}
+
 function initGame() {
     setTilesDisabled(true);
     renderStatus();
+    startButton.addEventListener("click", startGame);
+    resetButton.addEventListener("click", resetGame);
 }
 
 initGame();
