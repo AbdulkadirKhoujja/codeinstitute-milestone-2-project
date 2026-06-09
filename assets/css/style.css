@@ -316,3 +316,75 @@ p {
     flex-wrap: wrap;
     gap: 0.75rem;
 }
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.status-item {
+    min-height: 4rem;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.status-label,
+.difficulty-label {
+    display: block;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-value {
+    display: block;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.difficulty-label {
+    margin-top: 1rem;
+}
+
+select {
+    width: 100%;
+    min-height: 2.75rem;
+    margin-top: 0.35rem;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: #100d16;
+    color: var(--color-text);
+}
+
+.scores-panel {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.score-summary {
+    margin: 0.25rem 0 0;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+@media (max-width: 360px) {
+    .game-board {
+        grid-template-columns: repeat(2, minmax(5.5rem, 1fr));
+    }
+
+    .game-tile {
+        min-height: 5.5rem;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
