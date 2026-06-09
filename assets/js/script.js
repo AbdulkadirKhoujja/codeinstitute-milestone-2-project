@@ -117,17 +117,30 @@ function checkPlayerInput() {
     if (selectedTile !== expectedTile) {
         gameMessage.textContent = "That tile broke the pattern.";
         setTilesDisabled(true);
-        return false;
+        return "wrong";
     }
 
     if (gameState.playerInput.length === gameState.sequence.length) {
         gameMessage.textContent = "Pattern complete.";
         setTilesDisabled(true);
-        return true;
+        return "complete";
     }
 
     gameMessage.textContent = "Good. Keep going.";
-    return true;
+    return "correct";
+}
+
+async function completeRound() {
+    const pointsEarned = gameState.round * difficultySettings[gameState.difficulty].points;
+
+    gameState.score += pointsEarned;
+    gameMessage.textContent = `Round complete. ${pointsEarned} points earned.`;
+    renderStatus();
+
+    await wait(900);
+    generateNextStep();
+    renderStatus();
+    await playSequence();
 }
 
 async function handleTileClick(event) {
@@ -139,7 +152,12 @@ async function handleTileClick(event) {
 
     gameState.playerInput.push(selectedTile);
     await highlightTile(selectedTile);
-    checkPlayerInput();
+
+    const inputResult = checkPlayerInput();
+
+    if (inputResult === "complete") {
+        await completeRound();
+    }
 }
 
 async function startGame() {
