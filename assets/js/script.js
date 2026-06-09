@@ -70,6 +70,14 @@ function resetGame() {
     renderStatus();
 }
 
+function generateNextStep() {
+    const randomTile = Math.floor(Math.random() * gameTiles.length);
+
+    gameState.sequence.push(randomTile);
+    gameState.playerInput = [];
+    gameState.round = gameState.sequence.length;
+}
+
 function startGame() {
     gameState.sequence = [];
     gameState.playerInput = [];
@@ -82,6 +90,7 @@ function startGame() {
     difficultySelect.disabled = true;
     startButton.disabled = true;
     setTilesDisabled(true);
+    generateNextStep();
     renderStatus();
 }
 
