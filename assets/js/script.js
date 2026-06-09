@@ -109,6 +109,27 @@ async function playSequence() {
     setTilesDisabled(false);
 }
 
+function checkPlayerInput() {
+    const currentIndex = gameState.playerInput.length - 1;
+    const expectedTile = gameState.sequence[currentIndex];
+    const selectedTile = gameState.playerInput[currentIndex];
+
+    if (selectedTile !== expectedTile) {
+        gameMessage.textContent = "That tile broke the pattern.";
+        setTilesDisabled(true);
+        return false;
+    }
+
+    if (gameState.playerInput.length === gameState.sequence.length) {
+        gameMessage.textContent = "Pattern complete.";
+        setTilesDisabled(true);
+        return true;
+    }
+
+    gameMessage.textContent = "Good. Keep going.";
+    return true;
+}
+
 async function handleTileClick(event) {
     if (!gameState.isPlaying || gameState.isShowingSequence) {
         return;
@@ -118,6 +139,7 @@ async function handleTileClick(event) {
 
     gameState.playerInput.push(selectedTile);
     await highlightTile(selectedTile);
+    checkPlayerInput();
 }
 
 async function startGame() {
