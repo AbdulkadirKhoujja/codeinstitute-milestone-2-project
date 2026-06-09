@@ -78,7 +78,38 @@ function generateNextStep() {
     gameState.round = gameState.sequence.length;
 }
 
-function startGame() {
+function wait(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
+
+async function highlightTile(tileIndex) {
+    const tile = gameTiles[tileIndex];
+
+    tile.classList.add("is-active");
+    await wait(300);
+    tile.classList.remove("is-active");
+}
+
+async function playSequence() {
+    gameState.isShowingSequence = true;
+    setTilesDisabled(true);
+    gameMessage.textContent = `Round ${gameState.round}: watch the sequence.`;
+
+    await wait(500);
+
+    for (const tileIndex of gameState.sequence) {
+        await highlightTile(tileIndex);
+        await wait(difficultySettings[gameState.difficulty].playbackDelay);
+    }
+
+    gameState.isShowingSequence = false;
+    gameMessage.textContent = "Your turn. Repeat the pattern.";
+    setTilesDisabled(false);
+}
+
+async function startGame() {
     gameState.sequence = [];
     gameState.playerInput = [];
     gameState.score = 0;
@@ -92,6 +123,7 @@ function startGame() {
     setTilesDisabled(true);
     generateNextStep();
     renderStatus();
+    await playSequence();
 }
 
 function updateDifficulty() {
