@@ -109,6 +109,17 @@ async function playSequence() {
     setTilesDisabled(false);
 }
 
+async function handleTileClick(event) {
+    if (!gameState.isPlaying || gameState.isShowingSequence) {
+        return;
+    }
+
+    const selectedTile = Number(event.currentTarget.dataset.tile);
+
+    gameState.playerInput.push(selectedTile);
+    await highlightTile(selectedTile);
+}
+
 async function startGame() {
     gameState.sequence = [];
     gameState.playerInput = [];
@@ -139,6 +150,9 @@ function initGame() {
     startButton.addEventListener("click", startGame);
     resetButton.addEventListener("click", resetGame);
     difficultySelect.addEventListener("change", updateDifficulty);
+    gameTiles.forEach((tile) => {
+        tile.addEventListener("click", handleTileClick);
+    });
 }
 
 initGame();
