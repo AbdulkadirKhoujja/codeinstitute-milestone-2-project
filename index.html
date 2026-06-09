@@ -58,6 +58,30 @@
                         <button class="game-tile tile-green" type="button" data-tile="3" aria-label="Green tile"></button>
                     </div>
                     <div class="game-panel">
+                        <div class="status-grid" aria-label="Current game status">
+                            <div class="status-item">
+                                <span class="status-label">Score</span>
+                                <span class="status-value" id="score-display">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Round</span>
+                                <span class="status-value" id="round-display">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Lives</span>
+                                <span class="status-value" id="lives-display">3</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">High Score</span>
+                                <span class="status-value" id="high-score-display">0</span>
+                            </div>
+                        </div>
+                        <label class="difficulty-label" for="difficulty-select">Difficulty</label>
+                        <select id="difficulty-select" name="difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="hard">Hard</option>
+                        </select>
                         <p class="game-message" id="game-message" aria-live="polite">Choose a difficulty and press start.</p>
                         <div class="game-controls">
                             <button class="button button-primary" type="button" id="start-button">Start</button>
