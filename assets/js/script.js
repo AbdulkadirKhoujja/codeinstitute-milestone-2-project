@@ -85,11 +85,19 @@ function startGame() {
     renderStatus();
 }
 
+function updateDifficulty() {
+    gameState.difficulty = difficultySelect.value;
+    gameState.lives = difficultySettings[gameState.difficulty].lives;
+    gameMessage.textContent = `${gameState.difficulty} mode selected. Press start when ready.`;
+    renderStatus();
+}
+
 function initGame() {
     setTilesDisabled(true);
     renderStatus();
     startButton.addEventListener("click", startGame);
     resetButton.addEventListener("click", resetGame);
+    difficultySelect.addEventListener("change", updateDifficulty);
 }
 
 initGame();
