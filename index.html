@@ -45,6 +45,28 @@
                 </ol>
             </div>
         </section>
+
+        <section class="section game-section" id="play-game" tabindex="-1">
+            <div class="section-content">
+                <p class="eyebrow">Play Game</p>
+                <h2>Enter the pixel grid</h2>
+                <div class="game-shell">
+                    <div class="game-board" aria-label="Memory game tiles">
+                        <button class="game-tile tile-cyan" type="button" data-tile="0" aria-label="Cyan tile"></button>
+                        <button class="game-tile tile-pink" type="button" data-tile="1" aria-label="Pink tile"></button>
+                        <button class="game-tile tile-yellow" type="button" data-tile="2" aria-label="Yellow tile"></button>
+                        <button class="game-tile tile-green" type="button" data-tile="3" aria-label="Green tile"></button>
+                    </div>
+                    <div class="game-panel">
+                        <p class="game-message" id="game-message" aria-live="polite">Choose a difficulty and press start.</p>
+                        <div class="game-controls">
+                            <button class="button button-primary" type="button" id="start-button">Start</button>
+                            <button class="button button-secondary" type="button" id="reset-button">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <script src="assets/js/script.js"></script>
