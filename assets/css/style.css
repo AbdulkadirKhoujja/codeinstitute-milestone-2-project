@@ -1,1 +1,72 @@
+:root {
+    --color-bg: #121018;
+    --color-surface: #1d1a28;
+    --color-surface-strong: #2b2338;
+    --color-text: #f7f2ff;
+    --color-muted: #c8bfd6;
+    --color-cyan: #29d6e8;
+    --color-pink: #ff4fad;
+    --color-yellow: #ffd447;
+    --color-green: #5ce06f;
+    --color-warning: #ff8f4f;
+    --color-border: rgba(255, 255, 255, 0.16);
+    --shadow-glow: 0 0 24px rgba(41, 214, 232, 0.24);
+    --font-body: "Trebuchet MS", "Verdana", sans-serif;
+    --radius: 8px;
+    --container: 1100px;
+}
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background:
+        linear-gradient(135deg, rgba(41, 214, 232, 0.08), transparent 32%),
+        linear-gradient(225deg, rgba(255, 79, 173, 0.08), transparent 36%),
+        var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+}
+
+button,
+select {
+    font: inherit;
+}
+
+a {
+    color: inherit;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2 {
+    line-height: 1.1;
+}
+
+h1 {
+    font-size: 2.6rem;
+}
+
+h2 {
+    font-size: 1.9rem;
+}
+
+p {
+    color: var(--color-muted);
+}
