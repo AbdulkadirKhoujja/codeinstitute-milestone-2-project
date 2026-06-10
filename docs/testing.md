@@ -86,3 +86,13 @@ Responsive screenshots should be saved in `docs/evidence/screenshots/` when gene
 | KEY-07 | Trigger invalid tile action by keyboard | Helpful text message is shown | Message explains the blocked action | Pass |
 
 Keyboard screenshots should be saved in `docs/evidence/manual-testing/` when generated.
+
+## Bugs and Fixes
+
+| Bug ID | Issue | Cause | Fix | Status |
+| --- | --- | --- | --- | --- |
+| BUG-01 | Tiles gave no feedback when pressed before starting | Tiles were disabled, so the click handler could not explain the blocked action | Replaced native disabled state with `aria-disabled` and added helpful invalid-action messages | Fixed |
+| BUG-02 | Reset during sequence playback could allow stale playback to finish | The async playback loop had no cancellation guard | Added `playbackId` checks and cleared active tile highlights on reset/new game | Fixed |
+| BUG-03 | Clear high score deleted immediately | The action had no confirmation step | Added confirmation prompt and no-score message | Fixed |
+| BUG-04 | Some dynamic status updates were visual only | Status values changed on screen but were not summarized for assistive technology | Added ARIA live status region and screen-reader-only status announcer | Fixed |
+| BUG-05 | Small mobile widths risked cramped tile sizing | Game board used fixed tile minimums below 360px | Added fluid board width and mobile-specific square sizing | Fixed |
