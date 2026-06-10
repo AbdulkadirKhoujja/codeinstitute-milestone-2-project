@@ -223,6 +223,15 @@ async function handleTileClick(event) {
     }
 }
 
+function handleTileKeydown(event) {
+    if (event.key !== "Enter" && event.key !== " ") {
+        return;
+    }
+
+    event.preventDefault();
+    event.currentTarget.click();
+}
+
 async function startGame() {
     gameState.sequence = [];
     gameState.playerInput = [];
@@ -268,6 +277,7 @@ function initGame() {
     heroStartLink.addEventListener("click", handleHeroStart);
     gameTiles.forEach((tile) => {
         tile.addEventListener("click", handleTileClick);
+        tile.addEventListener("keydown", handleTileKeydown);
     });
 }
 
