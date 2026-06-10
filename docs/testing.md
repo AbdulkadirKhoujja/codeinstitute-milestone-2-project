@@ -96,3 +96,16 @@ Keyboard screenshots should be saved in `docs/evidence/manual-testing/` when gen
 | BUG-03 | Clear high score deleted immediately | The action had no confirmation step | Added confirmation prompt and no-score message | Fixed |
 | BUG-04 | Some dynamic status updates were visual only | Status values changed on screen but were not summarized for assistive technology | Added ARIA live status region and screen-reader-only status announcer | Fixed |
 | BUG-05 | Small mobile widths risked cramped tile sizing | Game board used fixed tile minimums below 360px | Added fluid board width and mobile-specific square sizing | Fixed |
+
+## Local Validation Checks
+
+Local checks were run during Part 2 and recorded in [local-validation-results.md](evidence/validation/local-validation-results.md).
+
+| Check | Result |
+| --- | --- |
+| JavaScript syntax with `node --check assets/js/script.js` | Pass |
+| CSS brace balance check | Pass |
+| ARIA/live-region markup spot check | Pass |
+| File naming spot check | Pass with `README.md` noted as the required conventional exception |
+
+Official W3C validation and Lighthouse reports have not been generated yet.
