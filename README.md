@@ -153,3 +153,19 @@ Live site link: Not deployed yet.
 When deployed, the expected GitHub Pages URL will follow this pattern:
 
 `https://abdulkadirkhoujja.github.io/codeinstitute-milestone-2-project/`
+
+## Credits and Attribution
+
+### Code
+
+All HTML, CSS, and JavaScript in this project was written specifically for Pixel Quest Memory Game.
+
+No code was reused from the previous gym website project.
+
+### Assets
+
+No external images, fonts, icons, audio, or game assets are used in the current project build.
+
+### Learning References
+
+General reference was made to standard HTML, CSS, JavaScript, accessibility, and GitHub Pages concepts. No tutorial code was copied into the project.
