@@ -43,7 +43,8 @@ const gameState = {
     highScore: 0,
     difficulty: "normal",
     isPlaying: false,
-    isShowingSequence: false
+    isShowingSequence: false,
+    playbackId: 0
 };
 
 function setTilesDisabled(isDisabled) {
@@ -63,6 +64,12 @@ function renderStatus() {
 
 function setGameMessage(message) {
     gameMessage.textContent = message;
+}
+
+function clearTileHighlights() {
+    gameTiles.forEach((tile) => {
+        tile.classList.remove("is-active");
+    });
 }
 
 function loadHighScore() {
@@ -95,6 +102,8 @@ function resetGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
+    gameState.playbackId += 1;
+    clearTileHighlights();
     setGameMessage("Game reset. Choose a difficulty and press Start.");
     difficultySelect.disabled = false;
     startButton.disabled = false;
@@ -125,6 +134,8 @@ async function highlightTile(tileIndex) {
 }
 
 async function playSequence() {
+    const currentPlayback = gameState.playbackId;
+
     gameState.isShowingSequence = true;
     setTilesDisabled(true);
     setGameMessage(`Round ${gameState.round}. Watch the tile sequence before entering your answer.`);
@@ -132,8 +143,16 @@ async function playSequence() {
     await wait(500);
 
     for (const tileIndex of gameState.sequence) {
+        if (currentPlayback !== gameState.playbackId || !gameState.isPlaying) {
+            return;
+        }
+
         await highlightTile(tileIndex);
         await wait(difficultySettings[gameState.difficulty].playbackDelay);
+    }
+
+    if (currentPlayback !== gameState.playbackId || !gameState.isPlaying) {
+        return;
     }
 
     gameState.isShowingSequence = false;
@@ -179,6 +198,7 @@ function endGame() {
     saveHighScore();
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
+    gameState.playbackId += 1;
     setGameMessage(`Game over. Final score: ${gameState.score}. Press Start to try again.`);
     lastResult.textContent = `Score ${gameState.score} in round ${gameState.round} on ${gameState.difficulty} mode.`;
     difficultySelect.disabled = false;
@@ -240,6 +260,10 @@ function handleTileKeydown(event) {
 }
 
 async function startGame() {
+    if (gameState.isShowingSequence) {
+        return;
+    }
+
     gameState.sequence = [];
     gameState.playerInput = [];
     gameState.score = 0;
@@ -247,6 +271,8 @@ async function startGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = true;
     gameState.isShowingSequence = false;
+    gameState.playbackId += 1;
+    clearTileHighlights();
     setGameMessage("Game started. Watch the first tile in the sequence.");
     difficultySelect.disabled = true;
     startButton.disabled = true;
