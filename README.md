@@ -130,3 +130,26 @@ Each difficulty controls starting lives, playback delay, and points per round:
 ### Local Storage
 
 The highest score is stored in the browser with the `pixelQuestHighScore` key. The game loads this value on page load, updates it after game over when the player beats the previous score, and removes it when the player confirms the clear high score action.
+
+## Deployment
+
+The project is designed to be deployed with GitHub Pages because it is a static HTML, CSS, and JavaScript site.
+
+### GitHub Pages Steps
+
+1. Push the latest `main` branch to GitHub.
+2. Open the GitHub repository.
+3. Go to **Settings**.
+4. Select **Pages** from the sidebar.
+5. Under **Build and deployment**, choose **Deploy from a branch**.
+6. Select the `main` branch and `/root` folder.
+7. Save the settings.
+8. Wait for GitHub Pages to publish the site.
+
+### Live Site
+
+Live site link: Not deployed yet.
+
+When deployed, the expected GitHub Pages URL will follow this pattern:
+
+`https://abdulkadirkhoujja.github.io/codeinstitute-milestone-2-project/`
