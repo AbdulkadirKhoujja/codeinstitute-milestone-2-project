@@ -42,3 +42,21 @@ These checks cover the first playable build only. Full validation, Lighthouse ev
 | RESP-01 | Mobile | Review at 320px width | Board fits screen and controls remain usable | CSS supports narrow board sizing | Pass |
 | RESP-02 | Tablet | Review at tablet width | Instructions and layout use available space | Tablet breakpoint applies | Pass |
 | RESP-03 | Desktop | Review at desktop width | Game board and panel sit side by side | Desktop breakpoint applies | Pass |
+
+## Game Functionality Testing
+
+The following checks were performed locally against the current HTML, CSS, and JavaScript files.
+
+| Test ID | Scenario | Steps | Result |
+| --- | --- | --- | --- |
+| FUNC-01 | Start a game | Open the page, choose Normal, press Start | Difficulty locks, round 1 starts, sequence plays |
+| FUNC-02 | Complete a round | Repeat the highlighted tile sequence correctly | Score increases and next round is generated |
+| FUNC-03 | Continue sequence | Complete multiple correct rounds | Sequence length increases by one each round |
+| FUNC-04 | Wrong input | Press a tile that does not match the sequence | Message explains the wrong input and lives decrease |
+| FUNC-05 | Replay after mistake | Make a mistake while lives remain | Same round is replayed before input unlocks |
+| FUNC-06 | Game over | Lose all available lives | Game over message displays and Start becomes available |
+| FUNC-07 | Reset | Press Reset during a run | Score, round, sequence, and input return to ready state |
+| FUNC-08 | Invalid tile action | Press a tile before starting | Message tells the player to press Start first |
+| FUNC-09 | Invalid playback action | Press a tile while sequence is playing | Message tells the player to watch the full sequence |
+| FUNC-10 | High score save | Finish with a score above the stored high score | High score updates in both displayed areas |
+| FUNC-11 | High score clear | Press Clear High Score and confirm | Stored score resets to zero and UI updates |
