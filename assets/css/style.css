@@ -279,13 +279,13 @@ p {
     box-shadow: 0 0 0 5px rgba(18, 16, 24, 0.9), 0 0 28px currentColor;
 }
 
-.game-tile:disabled {
+.game-tile[aria-disabled="true"] {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.58;
 }
 
 .game-tile.is-active,
-.game-tile:not(:disabled):hover {
+.game-tile[aria-disabled="false"]:hover {
     filter: brightness(1.45);
     opacity: 1;
     transform: scale(1.03);

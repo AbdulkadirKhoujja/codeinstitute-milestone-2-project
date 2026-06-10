@@ -47,7 +47,7 @@ const gameState = {
 
 function setTilesDisabled(isDisabled) {
     gameTiles.forEach((tile) => {
-        tile.disabled = isDisabled;
+        tile.setAttribute("aria-disabled", String(isDisabled));
     });
 }
 
@@ -202,7 +202,13 @@ async function handleWrongInput() {
 }
 
 async function handleTileClick(event) {
-    if (!gameState.isPlaying || gameState.isShowingSequence) {
+    if (!gameState.isPlaying) {
+        setGameMessage("Press Start before choosing tiles.");
+        return;
+    }
+
+    if (gameState.isShowingSequence) {
+        setGameMessage("Watch the full sequence first, then repeat it.");
         return;
     }
 
