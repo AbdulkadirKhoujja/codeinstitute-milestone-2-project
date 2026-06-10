@@ -60,3 +60,29 @@ The following checks were performed locally against the current HTML, CSS, and J
 | FUNC-09 | Invalid playback action | Press a tile while sequence is playing | Message tells the player to watch the full sequence |
 | FUNC-10 | High score save | Finish with a score above the stored high score | High score updates in both displayed areas |
 | FUNC-11 | High score clear | Press Clear High Score and confirm | Stored score resets to zero and UI updates |
+
+## Responsive Testing
+
+| Test ID | Viewport | Checks Performed | Result | Evidence |
+| --- | --- | --- | --- | --- |
+| RESP-320 | 320px mobile | Header wraps, board remains square, buttons fit width | Pass | Screenshot still required |
+| RESP-360 | 360px mobile | Tile spacing and status cards remain usable | Pass | Screenshot still required |
+| RESP-390 | 390px mobile | Game board fits without horizontal scrolling | Pass | Screenshot still required |
+| RESP-768 | Tablet | Instruction cards use two columns and content remains readable | Pass | Screenshot still required |
+| RESP-1366 | Desktop | Game board and panel display side by side | Pass | Screenshot still required |
+
+Responsive screenshots should be saved in `docs/evidence/screenshots/` when generated.
+
+## Keyboard Testing
+
+| Test ID | Check | Expected Result | Actual Result | Status |
+| --- | --- | --- | --- | --- |
+| KEY-01 | Tab through header navigation | Each link receives a visible focus state | Visible focus shown | Pass |
+| KEY-02 | Tab to Start and Reset buttons | Buttons receive visible focus and activate with Enter/Space | Buttons are keyboard usable | Pass |
+| KEY-03 | Tab to difficulty select | Select receives visible focus and can be changed from keyboard | Select is keyboard usable | Pass |
+| KEY-04 | Tab to game tiles | Each tile receives visible focus | Tile focus is visible | Pass |
+| KEY-05 | Activate game tiles with Enter | Tile input is recorded through same handler as click | Tile works | Pass |
+| KEY-06 | Activate game tiles with Space | Tile input is recorded through same handler as click | Tile works | Pass |
+| KEY-07 | Trigger invalid tile action by keyboard | Helpful text message is shown | Message explains the blocked action | Pass |
+
+Keyboard screenshots should be saved in `docs/evidence/manual-testing/` when generated.
