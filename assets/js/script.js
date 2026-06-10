@@ -14,6 +14,7 @@ const clearHighScoreButton = document.querySelector("#clear-high-score-button");
 const heroStartLink = document.querySelector("#hero-start-link");
 const gameSection = document.querySelector("#play-game");
 const highScoreStorageKey = "pixelQuestHighScore";
+const tileNames = ["cyan", "pink", "yellow", "green"];
 
 const difficultySettings = {
     easy: {
@@ -82,7 +83,7 @@ function saveHighScore() {
 function clearHighScore() {
     localStorage.removeItem(highScoreStorageKey);
     gameState.highScore = 0;
-    gameMessage.textContent = "High score cleared.";
+    setGameMessage("High score cleared. Your saved best score is now zero.");
     renderStatus();
 }
 
@@ -94,7 +95,7 @@ function resetGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
-    gameMessage.textContent = "Choose a difficulty and press start.";
+    setGameMessage("Game reset. Choose a difficulty and press Start.");
     difficultySelect.disabled = false;
     startButton.disabled = false;
     setTilesDisabled(true);
@@ -126,7 +127,7 @@ async function highlightTile(tileIndex) {
 async function playSequence() {
     gameState.isShowingSequence = true;
     setTilesDisabled(true);
-    gameMessage.textContent = `Round ${gameState.round}: watch the sequence.`;
+    setGameMessage(`Round ${gameState.round}. Watch the tile sequence before entering your answer.`);
 
     await wait(500);
 
@@ -136,7 +137,7 @@ async function playSequence() {
     }
 
     gameState.isShowingSequence = false;
-    gameMessage.textContent = "Your turn. Repeat the pattern.";
+    setGameMessage("Your turn. Repeat the full pattern in the same order.");
     setTilesDisabled(false);
 }
 
@@ -146,18 +147,18 @@ function checkPlayerInput() {
     const selectedTile = gameState.playerInput[currentIndex];
 
     if (selectedTile !== expectedTile) {
-        gameMessage.textContent = "That tile broke the pattern.";
+        setGameMessage(`Incorrect tile. You pressed ${tileNames[selectedTile]}; that does not match the pattern.`);
         setTilesDisabled(true);
         return "wrong";
     }
 
     if (gameState.playerInput.length === gameState.sequence.length) {
-        gameMessage.textContent = "Pattern complete.";
+        setGameMessage("Pattern complete. Preparing the next round.");
         setTilesDisabled(true);
         return "complete";
     }
 
-    gameMessage.textContent = "Good. Keep going.";
+    setGameMessage("Correct so far. Continue the pattern.");
     return "correct";
 }
 
@@ -165,7 +166,7 @@ async function completeRound() {
     const pointsEarned = gameState.round * difficultySettings[gameState.difficulty].points;
 
     gameState.score += pointsEarned;
-    gameMessage.textContent = `Round complete. ${pointsEarned} points earned.`;
+    setGameMessage(`Round ${gameState.round} complete. You earned ${pointsEarned} points.`);
     renderStatus();
 
     await wait(900);
@@ -178,7 +179,7 @@ function endGame() {
     saveHighScore();
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
-    gameMessage.textContent = `Game over. Final score: ${gameState.score}.`;
+    setGameMessage(`Game over. Final score: ${gameState.score}. Press Start to try again.`);
     lastResult.textContent = `Score ${gameState.score} in round ${gameState.round} on ${gameState.difficulty} mode.`;
     difficultySelect.disabled = false;
     startButton.disabled = false;
@@ -196,7 +197,7 @@ async function handleWrongInput() {
     }
 
     gameState.playerInput = [];
-    gameMessage.textContent = `${gameState.lives} lives left. Watch the round again.`;
+    setGameMessage(`Life lost. ${gameState.lives} lives remaining. Watch the same round again.`);
     await wait(1000);
     await playSequence();
 }
@@ -246,7 +247,7 @@ async function startGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = true;
     gameState.isShowingSequence = false;
-    gameMessage.textContent = "Game started. Watch the grid.";
+    setGameMessage("Game started. Watch the first tile in the sequence.");
     difficultySelect.disabled = true;
     startButton.disabled = true;
     setTilesDisabled(true);
@@ -268,7 +269,7 @@ async function handleHeroStart(event) {
 function updateDifficulty() {
     gameState.difficulty = difficultySelect.value;
     gameState.lives = difficultySettings[gameState.difficulty].lives;
-    gameMessage.textContent = `${gameState.difficulty} mode selected. Press start when ready.`;
+    setGameMessage(`${gameState.difficulty} mode selected. Lives and scoring have been updated. Press Start when ready.`);
     renderStatus();
 }
 
