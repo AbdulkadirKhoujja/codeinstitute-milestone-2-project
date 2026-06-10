@@ -70,3 +70,32 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 - Separate leaderboard table for recent local results.
 - Animated start countdown.
 - Additional tile themes for users who prefer different visual styles.
+
+## UX Design
+
+### Information Architecture
+
+The site is structured as a single-page application-style experience:
+
+- **Home** introduces the game and provides the primary Start Game call to action.
+- **How to Play** explains the rules in four short steps.
+- **Play Game** contains the interactive board, difficulty selector, controls, feedback, and current game statistics.
+- **Scores** shows the last result, saved high score, and high score clear control.
+- **About** explains the project purpose and confirms that the game code is original.
+
+This order supports the main user journey: understand the game, start playing, receive feedback, and review progress.
+
+### Design Choices
+
+The visual design uses a dark retro arcade style with bright cyan, pink, yellow, and green tile colours. The game board is intentionally simple so the sequence remains the focus. Cards and panels are used only where they group repeated or interactive information, such as status values and scores.
+
+The layout is mobile-first. The board keeps a square aspect ratio, controls remain touch-friendly, and larger screens use a two-column play area for better scanning.
+
+### Accessibility Rationale
+
+- Semantic HTML landmarks and headings provide a clear page structure.
+- All controls are buttons, links, or form controls.
+- Tiles can be activated by mouse, touch, Enter, or Space.
+- ARIA live regions announce game messages and status changes.
+- Visible focus states make keyboard navigation clear.
+- Feedback text explains success, mistakes, lives, and next steps without relying only on colour.
