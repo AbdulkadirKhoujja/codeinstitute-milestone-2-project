@@ -2,6 +2,20 @@
 
 Pixel Quest Memory Game is an Interactive Frontend Development project built with HTML, CSS, and JavaScript.
 
+## Contents
+
+- [Project Brief](#project-brief)
+- [User Goals](#user-goals)
+- [User Stories](#user-stories)
+- [Site Owner Goals](#site-owner-goals)
+- [Features](#features)
+- [UX Design](#ux-design)
+- [JavaScript Logic](#javascript-logic)
+- [Testing](#testing)
+- [Evidence](#evidence)
+- [Deployment](#deployment)
+- [Credits and Attribution](#credits-and-attribution)
+
 ## Project Brief
 
 Pixel Quest Memory Game is a retro-style memory and pattern game. The player watches a sequence of glowing tiles, then repeats that sequence from memory. Each successful round adds one more step, increasing the challenge over time.
@@ -130,6 +144,33 @@ Each difficulty controls starting lives, playback delay, and points per round:
 ### Local Storage
 
 The highest score is stored in the browser with the `pixelQuestHighScore` key. The game loads this value on page load, updates it after game over when the player beats the previous score, and removes it when the player confirms the clear high score action.
+
+## Testing
+
+Testing documentation is maintained in [docs/testing.md](docs/testing.md).
+
+The testing document includes:
+
+- Part 1 smoke checks.
+- Part 2 testing matrix.
+- Game functionality testing.
+- Responsive testing.
+- Keyboard testing.
+- Bugs and fixes.
+- Local validation checks.
+
+## Evidence
+
+Evidence folders are prepared under [docs/evidence](docs/evidence):
+
+- [Screenshots](docs/evidence/screenshots/readme.md)
+- [Validation](docs/evidence/validation/readme.md)
+- [Lighthouse](docs/evidence/lighthouse/readme.md)
+- [Manual testing](docs/evidence/manual-testing/readme.md)
+
+Current local validation notes are recorded in [local-validation-results.md](docs/evidence/validation/local-validation-results.md).
+
+Official W3C validation reports, Lighthouse reports, and generated screenshots are still required before final submission evidence is complete.
 
 ## Deployment
 
