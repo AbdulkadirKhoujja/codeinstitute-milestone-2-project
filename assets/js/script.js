@@ -88,6 +88,18 @@ function saveHighScore() {
 }
 
 function clearHighScore() {
+    if (gameState.highScore === 0) {
+        setGameMessage("There is no saved high score to clear.");
+        return;
+    }
+
+    const shouldClear = window.confirm("Clear the saved Pixel Quest high score?");
+
+    if (!shouldClear) {
+        setGameMessage("High score was kept.");
+        return;
+    }
+
     localStorage.removeItem(highScoreStorageKey);
     gameState.highScore = 0;
     setGameMessage("High score cleared. Your saved best score is now zero.");
