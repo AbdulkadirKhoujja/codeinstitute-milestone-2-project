@@ -8,6 +8,7 @@ const livesDisplay = document.querySelector("#lives-display");
 const highScoreDisplay = document.querySelector("#high-score-display");
 const savedHighScore = document.querySelector("#saved-high-score");
 const gameMessage = document.querySelector("#game-message");
+const statusAnnouncer = document.querySelector("#status-announcer");
 const lastResult = document.querySelector("#last-result");
 const clearHighScoreButton = document.querySelector("#clear-high-score-button");
 const heroStartLink = document.querySelector("#hero-start-link");
@@ -56,6 +57,11 @@ function renderStatus() {
     livesDisplay.textContent = gameState.lives;
     highScoreDisplay.textContent = gameState.highScore;
     savedHighScore.textContent = gameState.highScore;
+    statusAnnouncer.textContent = `Score ${gameState.score}. Round ${gameState.round}. Lives ${gameState.lives}. High score ${gameState.highScore}.`;
+}
+
+function setGameMessage(message) {
+    gameMessage.textContent = message;
 }
 
 function loadHighScore() {

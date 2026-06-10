@@ -58,7 +58,7 @@
                         <button class="game-tile tile-green" type="button" data-tile="3" aria-label="Green tile"></button>
                     </div>
                     <div class="game-panel">
-                        <div class="status-grid" aria-label="Current game status">
+                        <div class="status-grid" role="status" aria-live="polite" aria-label="Current game status">
                             <div class="status-item">
                                 <span class="status-label">Score</span>
                                 <span class="status-value" id="score-display">0</span>
@@ -82,7 +82,8 @@
                             <option value="normal" selected>Normal</option>
                             <option value="hard">Hard</option>
                         </select>
-                        <p class="game-message" id="game-message" aria-live="polite">Choose a difficulty and press start.</p>
+                        <p class="game-message" id="game-message" role="status" aria-live="polite" aria-atomic="true">Choose a difficulty and press start.</p>
+                        <p class="sr-only" id="status-announcer" aria-live="polite" aria-atomic="true">Score 0. Round 0. Lives 3. High score 0.</p>
                         <div class="game-controls">
                             <button class="button button-primary" type="button" id="start-button">Start</button>
                             <button class="button button-secondary" type="button" id="reset-button">Reset</button>
