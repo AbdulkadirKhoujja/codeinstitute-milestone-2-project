@@ -109,3 +109,23 @@ Local checks were run during Part 2 and recorded in [local-validation-results.md
 | File naming spot check | Pass with `README.md` noted as the required conventional exception |
 
 Official W3C validation and Lighthouse reports have not been generated yet.
+
+## Gameplay Regression Re-Test
+
+After fixing the Part 2 gameplay regression, the following local checks were completed with Edge headless automation:
+
+| Test ID | Check | Result |
+| --- | --- | --- |
+| REG-01 | Easy mode completes 3 rounds | Pass |
+| REG-02 | Normal mode completes 2 rounds | Pass |
+| REG-03 | Hard mode completes 1 round | Pass |
+| REG-04 | Wrong input removes one life and replay continues | Pass |
+| REG-05 | Reset clears state and restart works | Pass |
+| REG-06 | Rapid tile clicks do not double-handle input | Pass |
+| REG-07 | Tile clicks during playback are blocked | Pass |
+| REG-08 | Keyboard tile activation does not duplicate input | Pass |
+| REG-09 | High score persists after refresh | Pass |
+| REG-10 | Clear high score works | Pass |
+| REG-11 | Mobile 390px layout remains usable | Pass |
+
+Detailed notes are recorded in [gameplay-regression-report.md](gameplay-regression-report.md).

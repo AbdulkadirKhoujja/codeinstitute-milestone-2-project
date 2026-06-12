@@ -102,4 +102,30 @@ Current live playtest confirmed:
 
 ## Post-Fix Test Results
 
-Pending.
+Post-fix checks were run locally against the modified `index.html`, `assets/css/style.css`, and `assets/js/script.js` using Microsoft Edge headless automation.
+
+| Check | Result | Notes |
+| --- | --- | --- |
+| Easy 3 rounds | Pass | Score reached 60, round advanced to 4, lives stayed at 5 |
+| Normal 2 rounds | Pass | Score reached 60, round advanced to 3 |
+| Hard 1 round | Pass | Score reached 35, round advanced to 2 |
+| Wrong input | Pass | One life was removed and the same round replayed |
+| Continue after life lost | Pass | Player could complete the replayed sequence |
+| Reset | Pass | Score, round, lives, sequence, and prompt returned to ready state |
+| Restart after reset | Pass | A clean new game started and scored correctly |
+| Rapid clicks blocked | Pass | Rapid extra tile clicks did not double-handle the turn |
+| Click during playback blocked | Pass | Playback state did not accept the click as player input |
+| Keyboard input | Pass | Space activation on a focused tile scored once and did not duplicate |
+| High score persistence | Pass | High score survived refresh |
+| Clear high score | Pass | Confirmation flow cleared the saved score |
+| Mobile 390px | Pass | Board stayed square with no horizontal overflow |
+
+## Fix Summary
+
+- Added `isAcceptingInput` to block rapid or overlapping tile inputs.
+- Removed the custom tile `keydown` click handler and relied on native button keyboard behavior.
+- Added run-token checks to delayed round progression and wrong-input replay.
+- Ensured reset and new game cancel stale async playback before it can update state.
+- Kept `aria-disabled`, live regions, and focus accessibility improvements from Part 2.
+- Slowed playback slightly and added friendlier messages for watch, turn, correct, wrong, and game-over states.
+- Added difficulty and keyboard guidance to the interface.
