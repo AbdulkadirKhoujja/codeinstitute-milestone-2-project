@@ -19,17 +19,20 @@ const tileNames = ["cyan", "pink", "yellow", "green"];
 const difficultySettings = {
     easy: {
         lives: 5,
-        playbackDelay: 800,
+        tileDuration: 430,
+        playbackDelay: 950,
         points: 10
     },
     normal: {
         lives: 3,
-        playbackDelay: 650,
+        tileDuration: 380,
+        playbackDelay: 760,
         points: 20
     },
     hard: {
         lives: 2,
-        playbackDelay: 480,
+        tileDuration: 330,
+        playbackDelay: 580,
         points: 35
     }
 };
@@ -44,6 +47,7 @@ const gameState = {
     difficulty: "normal",
     isPlaying: false,
     isShowingSequence: false,
+    isAcceptingInput: false,
     playbackId: 0
 };
 
@@ -70,6 +74,10 @@ function clearTileHighlights() {
     gameTiles.forEach((tile) => {
         tile.classList.remove("is-active");
     });
+}
+
+function isCurrentRun(runId) {
+    return runId === gameState.playbackId && gameState.isPlaying;
 }
 
 function loadHighScore() {
@@ -114,6 +122,7 @@ function resetGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
+    gameState.isAcceptingInput = false;
     gameState.playbackId += 1;
     clearTileHighlights();
     setGameMessage("Game reset. Choose a difficulty and press Start.");
@@ -137,39 +146,54 @@ function wait(ms) {
     });
 }
 
-async function highlightTile(tileIndex) {
+async function highlightTile(tileIndex, runId = gameState.playbackId) {
+    if (runId !== gameState.playbackId) {
+        return false;
+    }
+
     const tile = gameTiles[tileIndex];
 
     tile.classList.add("is-active");
-    await wait(300);
+    await wait(difficultySettings[gameState.difficulty].tileDuration);
     tile.classList.remove("is-active");
+    return runId === gameState.playbackId;
 }
 
-async function playSequence() {
-    const currentPlayback = gameState.playbackId;
+async function playSequence(runId = gameState.playbackId) {
+    if (!isCurrentRun(runId)) {
+        return false;
+    }
 
     gameState.isShowingSequence = true;
+    gameState.isAcceptingInput = false;
     setTilesDisabled(true);
-    setGameMessage(`Round ${gameState.round}. Watch the tile sequence before entering your answer.`);
+    setGameMessage(`Round ${gameState.round}. Watch the sequence...`);
 
-    await wait(500);
+    await wait(800);
 
     for (const tileIndex of gameState.sequence) {
-        if (currentPlayback !== gameState.playbackId || !gameState.isPlaying) {
-            return;
+        if (!isCurrentRun(runId)) {
+            return false;
         }
 
-        await highlightTile(tileIndex);
+        const highlighted = await highlightTile(tileIndex, runId);
+
+        if (!highlighted || !isCurrentRun(runId)) {
+            return false;
+        }
+
         await wait(difficultySettings[gameState.difficulty].playbackDelay);
     }
 
-    if (currentPlayback !== gameState.playbackId || !gameState.isPlaying) {
-        return;
+    if (!isCurrentRun(runId)) {
+        return false;
     }
 
     gameState.isShowingSequence = false;
-    setGameMessage("Your turn. Repeat the full pattern in the same order.");
+    gameState.isAcceptingInput = true;
+    setGameMessage("Your turn: repeat the pattern.");
     setTilesDisabled(false);
+    return true;
 }
 
 function checkPlayerInput() {
@@ -178,13 +202,13 @@ function checkPlayerInput() {
     const selectedTile = gameState.playerInput[currentIndex];
 
     if (selectedTile !== expectedTile) {
-        setGameMessage(`Incorrect tile. You pressed ${tileNames[selectedTile]}; that does not match the pattern.`);
+        setGameMessage(`Not quite, ${tileNames[selectedTile]} was not next. You lost one life.`);
         setTilesDisabled(true);
         return "wrong";
     }
 
     if (gameState.playerInput.length === gameState.sequence.length) {
-        setGameMessage("Pattern complete. Preparing the next round.");
+        setGameMessage("Nice! Next round.");
         setTilesDisabled(true);
         return "complete";
     }
@@ -194,24 +218,36 @@ function checkPlayerInput() {
 }
 
 async function completeRound() {
+    const runId = gameState.playbackId;
     const pointsEarned = gameState.round * difficultySettings[gameState.difficulty].points;
 
     gameState.score += pointsEarned;
-    setGameMessage(`Round ${gameState.round} complete. You earned ${pointsEarned} points.`);
+    gameState.isAcceptingInput = false;
+    setGameMessage(`Nice! Round ${gameState.round} complete. You earned ${pointsEarned} points.`);
     renderStatus();
 
-    await wait(900);
+    await wait(1100);
+
+    if (!isCurrentRun(runId)) {
+        return;
+    }
+
     generateNextStep();
     renderStatus();
-    await playSequence();
+    await playSequence(runId);
 }
 
-function endGame() {
+function endGame(runId = gameState.playbackId) {
+    if (runId !== gameState.playbackId) {
+        return;
+    }
+
     saveHighScore();
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
+    gameState.isAcceptingInput = false;
     gameState.playbackId += 1;
-    setGameMessage(`Game over. Final score: ${gameState.score}. Press Start to try again.`);
+    setGameMessage(`Game over. Try again, your high score is saved. Final score: ${gameState.score}.`);
     lastResult.textContent = `Score ${gameState.score} in round ${gameState.round} on ${gameState.difficulty} mode.`;
     difficultySelect.disabled = false;
     startButton.disabled = false;
@@ -220,18 +256,26 @@ function endGame() {
 }
 
 async function handleWrongInput() {
+    const runId = gameState.playbackId;
+
     gameState.lives -= 1;
+    gameState.isAcceptingInput = false;
     renderStatus();
 
     if (gameState.lives <= 0) {
-        endGame();
+        endGame(runId);
         return;
     }
 
     gameState.playerInput = [];
-    setGameMessage(`Life lost. ${gameState.lives} lives remaining. Watch the same round again.`);
-    await wait(1000);
-    await playSequence();
+    setGameMessage(`Not quite, you lost one life. ${gameState.lives} lives left. Watch again.`);
+    await wait(1500);
+
+    if (!isCurrentRun(runId)) {
+        return;
+    }
+
+    await playSequence(runId);
 }
 
 async function handleTileClick(event) {
@@ -245,10 +289,22 @@ async function handleTileClick(event) {
         return;
     }
 
+    if (!gameState.isAcceptingInput) {
+        setGameMessage("Hold on, wait for your turn prompt.");
+        return;
+    }
+
+    const runId = gameState.playbackId;
     const selectedTile = Number(event.currentTarget.dataset.tile);
 
+    gameState.isAcceptingInput = false;
     gameState.playerInput.push(selectedTile);
-    await highlightTile(selectedTile);
+
+    const highlighted = await highlightTile(selectedTile, runId);
+
+    if (!highlighted || !isCurrentRun(runId)) {
+        return;
+    }
 
     const inputResult = checkPlayerInput();
 
@@ -259,23 +315,15 @@ async function handleTileClick(event) {
 
     if (inputResult === "complete") {
         await completeRound();
-    }
-}
-
-function handleTileKeydown(event) {
-    if (event.key !== "Enter" && event.key !== " ") {
         return;
     }
 
-    event.preventDefault();
-    event.currentTarget.click();
+    gameState.isAcceptingInput = true;
+    setTilesDisabled(false);
 }
 
 async function startGame() {
-    if (gameState.isShowingSequence) {
-        return;
-    }
-
+    gameState.playbackId += 1;
     gameState.sequence = [];
     gameState.playerInput = [];
     gameState.score = 0;
@@ -283,15 +331,15 @@ async function startGame() {
     gameState.lives = difficultySettings[gameState.difficulty].lives;
     gameState.isPlaying = true;
     gameState.isShowingSequence = false;
-    gameState.playbackId += 1;
+    gameState.isAcceptingInput = false;
     clearTileHighlights();
-    setGameMessage("Game started. Watch the first tile in the sequence.");
+    setGameMessage("Game started. Get ready to watch the sequence...");
     difficultySelect.disabled = true;
     startButton.disabled = true;
     setTilesDisabled(true);
     generateNextStep();
     renderStatus();
-    await playSequence();
+    await playSequence(gameState.playbackId);
 }
 
 async function handleHeroStart(event) {
@@ -322,7 +370,6 @@ function initGame() {
     heroStartLink.addEventListener("click", handleHeroStart);
     gameTiles.forEach((tile) => {
         tile.addEventListener("click", handleTileClick);
-        tile.addEventListener("keydown", handleTileKeydown);
     });
 }
 
