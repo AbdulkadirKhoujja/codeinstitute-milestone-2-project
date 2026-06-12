@@ -275,7 +275,7 @@ p {
     border-radius: var(--radius);
     cursor: pointer;
     opacity: 0.92;
-    transition: filter 160ms ease, opacity 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+    transition: opacity 120ms ease, transform 120ms ease, box-shadow 120ms ease;
 }
 
 .game-tile:focus-visible {
@@ -288,12 +288,18 @@ p {
     opacity: 0.58;
 }
 
-.game-tile.is-active,
 .game-tile[aria-disabled="false"]:hover {
+    opacity: 1;
+    transform: scale(1.02);
+    box-shadow: 0 0 18px currentColor;
+}
+
+.game-tile.is-active {
     filter: brightness(1.45);
     opacity: 1;
     transform: scale(1.03);
     box-shadow: 0 0 28px currentColor;
+    transition: none;
 }
 
 .tile-cyan {

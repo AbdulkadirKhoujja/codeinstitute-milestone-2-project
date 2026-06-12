@@ -127,7 +127,7 @@ The `gameState` object stores the current sequence, player input, score, round, 
 1. The player selects a difficulty.
 2. `startGame()` resets the current run, locks the difficulty selector, generates the first sequence step, and starts playback.
 3. `generateNextStep()` adds a random tile index to the sequence.
-4. `playSequence()` highlights each tile in order and then allows player input.
+4. `playSequence()` flashes each tile once per sequence step, then allows player input.
 5. `handleTileClick()` records mouse, touch, or keyboard tile input.
 6. `checkPlayerInput()` compares the latest player input with the sequence.
 7. `completeRound()` awards points, adds a new sequence step, and starts the next round.
@@ -140,6 +140,8 @@ Each difficulty controls starting lives, playback delay, and points per round:
 - Easy: more lives, slower playback, lower points.
 - Normal: balanced lives, playback, and scoring.
 - Hard: fewer lives, faster playback, higher points.
+
+Difficulty changes the playback speed and scoring, but each sequence step still flashes once.
 
 ### Local Storage
 

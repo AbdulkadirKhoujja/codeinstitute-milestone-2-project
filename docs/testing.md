@@ -127,5 +127,6 @@ After fixing the Part 2 gameplay regression, the following local checks were com
 | REG-09 | High score persists after refresh | Pass |
 | REG-10 | Clear high score works | Pass |
 | REG-11 | Mobile 390px layout remains usable | Pass |
+| REG-12 | Easy, Normal, and Hard sequence playback flashes each sequence step once | Pass |
 
 Detailed notes are recorded in [gameplay-regression-report.md](gameplay-regression-report.md).

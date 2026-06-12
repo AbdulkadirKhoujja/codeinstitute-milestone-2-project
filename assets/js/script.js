@@ -146,16 +146,25 @@ function wait(ms) {
     });
 }
 
-async function highlightTile(tileIndex, runId = gameState.playbackId) {
+async function flashTile(tileIndex, runId = gameState.playbackId) {
     if (runId !== gameState.playbackId) {
         return false;
     }
 
     const tile = gameTiles[tileIndex];
 
+    tile.classList.remove("is-active");
+    await wait(40);
+
+    if (runId !== gameState.playbackId) {
+        return false;
+    }
+
     tile.classList.add("is-active");
     await wait(difficultySettings[gameState.difficulty].tileDuration);
     tile.classList.remove("is-active");
+
+    await wait(80);
     return runId === gameState.playbackId;
 }
 
@@ -176,7 +185,7 @@ async function playSequence(runId = gameState.playbackId) {
             return false;
         }
 
-        const highlighted = await highlightTile(tileIndex, runId);
+        const highlighted = await flashTile(tileIndex, runId);
 
         if (!highlighted || !isCurrentRun(runId)) {
             return false;
@@ -300,7 +309,7 @@ async function handleTileClick(event) {
     gameState.isAcceptingInput = false;
     gameState.playerInput.push(selectedTile);
 
-    const highlighted = await highlightTile(selectedTile, runId);
+    const highlighted = await flashTile(selectedTile, runId);
 
     if (!highlighted || !isCurrentRun(runId)) {
         return;
