@@ -8,4 +8,4 @@ Suggested evidence:
 - Desktop Lighthouse HTML or JSON report.
 - Screenshot of the summary result.
 
-No Lighthouse score should be claimed unless Lighthouse has actually been run against the project.
+The Lighthouse reports and summary screenshots in this folder were generated against the live GitHub Pages site and are embedded or linked from the README.

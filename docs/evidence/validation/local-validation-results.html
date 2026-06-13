@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Quest Local Validation Results</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 48px;
+            background: #f8fafc;
+            color: #172033;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 36px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            background: #ffffff;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #e2e8f0;
+        }
+
+        code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            background: #eef2ff;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Local Validation Results</h1>
+        <p>These are local checks run during Part 2. They are not official W3C Validator or Lighthouse results.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Check</th>
+                    <th>Command</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>JavaScript syntax</td>
+                    <td><code>node --check assets/js/script.js</code></td>
+                    <td>Pass, no syntax errors reported.</td>
+                </tr>
+                <tr>
+                    <td>CSS brace balance</td>
+                    <td>PowerShell count of <code>{</code> and <code>}</code> in <code>assets/css/style.css</code></td>
+                    <td>Pass, matching opening and closing braces.</td>
+                </tr>
+                <tr>
+                    <td>Accessibility markup spot check</td>
+                    <td><code>Select-String</code> for ARIA/live-region attributes</td>
+                    <td>Pass, expected ARIA attributes found in <code>index.html</code>.</td>
+                </tr>
+                <tr>
+                    <td>Lower-case file naming spot check</td>
+                    <td>PowerShell scan for uppercase, underscores, or spaces in file names</td>
+                    <td><code>README.md</code> reported only; this is the conventional project README filename.</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Official HTML/CSS validation screenshots and Lighthouse reports have since been generated and embedded in README.md.</p>
+    </main>
+</body>
+</html>

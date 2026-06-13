@@ -8,4 +8,4 @@ Suggested evidence:
 - W3C CSS Validator result for `assets/css/style.css`.
 - JavaScript syntax check output.
 
-No official validation result should be recorded unless the check has actually been run.
+Validation screenshots and local validation notes in this folder are real generated evidence and are embedded or linked from the README.

@@ -7,4 +7,4 @@ This folder is reserved for real project screenshots, such as:
 - Keyboard focus state examples.
 - Completed game and high score state.
 
-Screenshots should only be added after they are generated from the actual project.
+Generated screenshots from the actual project are stored in this folder and embedded in the README.

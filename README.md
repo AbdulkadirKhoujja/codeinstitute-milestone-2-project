@@ -9,6 +9,7 @@ Pixel Quest Memory Game is an Interactive Frontend Development project built wit
 - [User Stories](#user-stories)
 - [Site Owner Goals](#site-owner-goals)
 - [Features](#features)
+- [Planning and Design Evidence](#planning-and-design-evidence)
 - [UX Design](#ux-design)
 - [JavaScript Logic](#javascript-logic)
 - [Testing](#testing)
@@ -84,6 +85,16 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 - Separate leaderboard table for recent local results.
 - Animated start countdown.
 - Additional tile themes for users who prefer different visual styles.
+
+## Planning and Design Evidence
+
+### Wireframes
+
+No original hand-drawn or PDF wireframes were present in the repository. The visual below is a generated wireframe-style preview based on the current project layout, included to make the page structure visible directly in the README.
+
+![Generated Pixel Quest wireframe preview](docs/evidence/planning/wireframes-preview.png)
+
+Supporting file: [wireframes-preview.html](docs/evidence/planning/wireframes-preview.html)
 
 ## UX Design
 
@@ -170,9 +181,55 @@ Evidence folders are prepared under [docs/evidence](docs/evidence):
 - [Lighthouse](docs/evidence/lighthouse/readme.md)
 - [Manual testing](docs/evidence/manual-testing/readme.md)
 
-Current local validation notes are recorded in [local-validation-results.md](docs/evidence/validation/local-validation-results.md).
+### Responsive Screenshots
 
-Official W3C validation reports, Lighthouse reports, and generated screenshots are still required before final submission evidence is complete.
+![Desktop full-page screenshot](docs/evidence/screenshots/index-desktop.png)
+
+![Tablet full-page screenshot](docs/evidence/screenshots/index-tablet.png)
+
+![Mobile 390px full-page screenshot](docs/evidence/screenshots/index-mobile-390.png)
+
+### Game Interface Evidence
+
+![Desktop game section screenshot](docs/evidence/screenshots/game-section-desktop.png)
+
+![Scores section screenshot](docs/evidence/screenshots/scores-section-desktop.png)
+
+### Validation Evidence
+
+![W3C HTML validation screenshot](docs/evidence/validation/w3c-html-validation.png)
+
+![W3C CSS validation screenshot](docs/evidence/validation/w3c-css-validation.png)
+
+![Local validation results screenshot](docs/evidence/validation/local-validation-results.png)
+
+Supporting validation files:
+
+- [Local validation notes](docs/evidence/validation/local-validation-results.md)
+- [Local validation HTML view](docs/evidence/validation/local-validation-results.html)
+
+### Lighthouse Evidence
+
+![Desktop Lighthouse summary screenshot](docs/evidence/lighthouse/lighthouse-desktop-summary.png)
+
+![Mobile Lighthouse summary screenshot](docs/evidence/lighthouse/lighthouse-mobile-summary.png)
+
+Supporting Lighthouse reports:
+
+- [Desktop Lighthouse HTML report](docs/evidence/lighthouse/lighthouse-desktop-report.report.html)
+- [Desktop Lighthouse JSON report](docs/evidence/lighthouse/lighthouse-desktop-report.report.json)
+- [Mobile Lighthouse HTML report](docs/evidence/lighthouse/lighthouse-mobile-report.report.html)
+- [Mobile Lighthouse JSON report](docs/evidence/lighthouse/lighthouse-mobile-report.report.json)
+
+### Manual Testing Evidence
+
+![Keyboard focus on game tile screenshot](docs/evidence/manual-testing/keyboard-focus-game-tile.png)
+
+Supporting testing files:
+
+- [Testing documentation](docs/testing.md)
+- [Gameplay regression report](docs/gameplay-regression-report.md)
+- [First-time playtest report](docs/playtest-report.md)
 
 ## Deployment
 
@@ -190,10 +247,6 @@ The project is designed to be deployed with GitHub Pages because it is a static 
 8. Wait for GitHub Pages to publish the site.
 
 ### Live Site
-
-Live site link: Not deployed yet.
-
-When deployed, the expected GitHub Pages URL will follow this pattern:
 
 `https://abdulkadirkhoujja.github.io/codeinstitute-milestone-2-project/`
 

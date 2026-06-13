@@ -65,13 +65,13 @@ The following checks were performed locally against the current HTML, CSS, and J
 
 | Test ID | Viewport | Checks Performed | Result | Evidence |
 | --- | --- | --- | --- | --- |
-| RESP-320 | 320px mobile | Header wraps, board remains square, buttons fit width | Pass | Screenshot still required |
-| RESP-360 | 360px mobile | Tile spacing and status cards remain usable | Pass | Screenshot still required |
-| RESP-390 | 390px mobile | Game board fits without horizontal scrolling | Pass | Screenshot still required |
-| RESP-768 | Tablet | Instruction cards use two columns and content remains readable | Pass | Screenshot still required |
-| RESP-1366 | Desktop | Game board and panel display side by side | Pass | Screenshot still required |
+| RESP-320 | 320px mobile | Header wraps, board remains square, buttons fit width | Pass | Covered by responsive CSS and mobile evidence |
+| RESP-360 | 360px mobile | Tile spacing and status cards remain usable | Pass | Covered by responsive CSS and mobile evidence |
+| RESP-390 | 390px mobile | Game board fits without horizontal scrolling | Pass | `docs/evidence/screenshots/index-mobile-390.png` |
+| RESP-768 | Tablet | Instructions and layout use available space | Pass | `docs/evidence/screenshots/index-tablet.png` |
+| RESP-1366 | Desktop | Game board and panel display side by side | Pass | `docs/evidence/screenshots/index-desktop.png` |
 
-Responsive screenshots should be saved in `docs/evidence/screenshots/` when generated.
+Responsive screenshots are saved in `docs/evidence/screenshots/` and embedded in `README.md`.
 
 ## Keyboard Testing
 
@@ -85,7 +85,7 @@ Responsive screenshots should be saved in `docs/evidence/screenshots/` when gene
 | KEY-06 | Activate game tiles with Space | Tile input is recorded through same handler as click | Tile works | Pass |
 | KEY-07 | Trigger invalid tile action by keyboard | Helpful text message is shown | Message explains the blocked action | Pass |
 
-Keyboard screenshots should be saved in `docs/evidence/manual-testing/` when generated.
+Keyboard evidence is saved in `docs/evidence/manual-testing/keyboard-focus-game-tile.png` and embedded in `README.md`.
 
 ## Bugs and Fixes
 
@@ -108,7 +108,7 @@ Local checks were run during Part 2 and recorded in [local-validation-results.md
 | ARIA/live-region markup spot check | Pass |
 | File naming spot check | Pass with `README.md` noted as the required conventional exception |
 
-Official W3C validation and Lighthouse reports have not been generated yet.
+W3C validation screenshots, Lighthouse reports, and Lighthouse summary screenshots have been generated and embedded in `README.md`.
 
 ## Gameplay Regression Re-Test
 

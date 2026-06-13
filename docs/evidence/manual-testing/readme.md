@@ -9,4 +9,4 @@ Suggested evidence:
 - Responsive testing screenshots.
 - Any issue reproduction notes.
 
-Manual evidence should describe real checks performed on the project.
+Manual evidence should describe real checks performed on the project. Current key manual-testing evidence is embedded in the README.

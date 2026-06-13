@@ -9,4 +9,4 @@ These are local checks run during Part 2. They are not official W3C Validator or
 | Accessibility markup spot check | `Select-String` for `aria-live`, `aria-atomic`, `role="status"`, `aria-keyshortcuts` | Pass, expected ARIA attributes found in `index.html` |
 | Lower-case file naming spot check | PowerShell scan for uppercase, underscores, or spaces in file names | `README.md` reported only; this is the conventional required project README filename |
 
-Official HTML/CSS validation and Lighthouse reports still need to be generated separately before final submission evidence is complete.
+Official HTML/CSS validation screenshots and Lighthouse reports have since been generated and embedded in `README.md`.

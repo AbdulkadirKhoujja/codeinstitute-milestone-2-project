@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Quest Generated Wireframe Preview</title>
+    <style>
+        :root {
+            --ink: #20232a;
+            --muted: #68707d;
+            --line: #9aa4b2;
+            --panel: #f5f7fb;
+            --accent: #dbeafe;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #ffffff;
+            color: var(--ink);
+            font-family: Arial, sans-serif;
+        }
+
+        .page {
+            width: 1400px;
+            padding: 48px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: 36px;
+        }
+
+        p {
+            margin: 0 0 32px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 390px 840px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .frame {
+            border: 3px solid var(--ink);
+            border-radius: 12px;
+            background: var(--panel);
+            overflow: hidden;
+        }
+
+        .frame h2 {
+            margin: 0;
+            padding: 16px 20px;
+            border-bottom: 2px solid var(--line);
+            background: #ffffff;
+            font-size: 20px;
+        }
+
+        .wire {
+            padding: 20px;
+        }
+
+        .bar,
+        .box,
+        .button,
+        .tile,
+        .stat {
+            border: 2px solid var(--line);
+            background: #ffffff;
+        }
+
+        .bar {
+            height: 44px;
+            margin-bottom: 20px;
+        }
+
+        .hero {
+            height: 150px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: var(--accent);
+        }
+
+        .line {
+            height: 16px;
+            margin-bottom: 12px;
+            background: var(--line);
+            opacity: 0.8;
+        }
+
+        .line.short {
+            width: 55%;
+        }
+
+        .line.medium {
+            width: 75%;
+        }
+
+        .button {
+            width: 130px;
+            height: 40px;
+            margin-top: 18px;
+            background: #e0f2fe;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            height: 82px;
+        }
+
+        .game {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            aspect-ratio: 1;
+        }
+
+        .tile {
+            background: #f8fafc;
+        }
+
+        .panel {
+            display: grid;
+            gap: 12px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            height: 58px;
+        }
+
+        .select {
+            height: 44px;
+        }
+
+        .message {
+            height: 74px;
+        }
+
+        .mobile .wire {
+            padding: 16px;
+        }
+
+        .mobile .cards,
+        .mobile .game {
+            grid-template-columns: 1fr;
+        }
+
+        .mobile .board {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <h1>Pixel Quest Memory Game Wireframe Preview</h1>
+        <p>Generated from the current project structure to document the planned single-page layout. This is not an external asset.</p>
+        <section class="grid" aria-label="Generated mobile and desktop wireframe previews">
+            <article class="frame mobile">
+                <h2>Mobile layout</h2>
+                <div class="wire">
+                    <div class="bar"></div>
+                    <div class="hero">
+                        <div class="line"></div>
+                        <div class="line medium"></div>
+                        <div class="line short"></div>
+                        <div class="button"></div>
+                    </div>
+                    <div class="cards">
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div class="game">
+                        <div class="board">
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                        </div>
+                        <div class="panel">
+                            <div class="stats">
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                            </div>
+                            <div class="box select"></div>
+                            <div class="box message"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="frame">
+                <h2>Desktop layout</h2>
+                <div class="wire">
+                    <div class="bar"></div>
+                    <div class="hero">
+                        <div class="line"></div>
+                        <div class="line medium"></div>
+                        <div class="line short"></div>
+                        <div class="button"></div>
+                    </div>
+                    <div class="cards">
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                        <div class="box"></div>
+                    </div>
+                    <div class="game">
+                        <div class="board">
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                            <div class="tile"></div>
+                        </div>
+                        <div class="panel">
+                            <div class="stats">
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                                <div class="stat"></div>
+                            </div>
+                            <div class="box select"></div>
+                            <div class="box message"></div>
+                            <div class="button"></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
