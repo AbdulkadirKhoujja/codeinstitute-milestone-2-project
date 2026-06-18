@@ -10,3 +10,8 @@ Suggested evidence:
 - Any issue reproduction notes.
 
 Manual evidence should describe real checks performed on the project. Current key manual-testing evidence is embedded in the README.
+
+Final assessment manual evidence:
+
+- `final-functionality-evidence.md`
+- `keyboard-focus-testing.png`
