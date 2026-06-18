@@ -10,3 +10,9 @@ These are local checks run during Part 2. They are not official W3C Validator or
 | Lower-case file naming spot check | PowerShell scan for uppercase, underscores, or spaces in file names | `README.md` reported only; this is the conventional required project README filename |
 
 Official HTML/CSS validation screenshots and Lighthouse reports have since been generated and embedded in `README.md`.
+
+## Final Assessment Follow-Up
+
+On 2026-06-18, `node --check assets/js/script.js` was rerun after the final gameplay guard updates and passed with no syntax errors. Headless Edge automation also loaded `index.html`, `404.html`, and the deployed site with zero runtime exceptions or browser log errors captured.
+
+An attempted fresh `npx.cmd --yes html-validate@latest index.html 404.html` run timed out in the local environment, so it is documented as a tool limitation rather than a pass.
