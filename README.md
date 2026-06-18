@@ -6,14 +6,17 @@ Pixel Quest Memory Game is an Interactive Frontend Development project built wit
 
 - [Project Brief](#project-brief)
 - [User Goals](#user-goals)
+- [Target Audience](#target-audience)
 - [User Stories](#user-stories)
 - [Site Owner Goals](#site-owner-goals)
 - [Features](#features)
 - [Planning and Design Evidence](#planning-and-design-evidence)
 - [UX Design](#ux-design)
+- [Technologies Used](#technologies-used)
 - [JavaScript Logic](#javascript-logic)
 - [Testing](#testing)
 - [Evidence](#evidence)
+- [Bugs and Fixes](#bugs-and-fixes)
 - [Deployment](#deployment)
 - [Credits and Attribution](#credits-and-attribution)
 
@@ -21,7 +24,7 @@ Pixel Quest Memory Game is an Interactive Frontend Development project built wit
 
 Pixel Quest Memory Game is a retro-style memory and pattern game. The player watches a sequence of glowing tiles, then repeats that sequence from memory. Each successful round adds one more step, increasing the challenge over time.
 
-The project is being created for Code Institute Project 2: Interactive Frontend Development. It focuses on custom JavaScript interactivity, responsive layout, clear feedback, and a simple browser-based game loop.
+The project was created for Code Institute Project 2: Interactive Frontend Development. It focuses on custom JavaScript interactivity, responsive layout, clear feedback, and a simple browser-based game loop.
 
 ## User Goals
 
@@ -31,6 +34,10 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 - Receive clear feedback after each action.
 - See score, round, lives, and high score.
 - Play comfortably on mobile, tablet, and desktop screens.
+
+## Target Audience
+
+Pixel Quest Memory Game is designed for casual players who enjoy short browser games, Code Institute assessors reviewing custom JavaScript interaction, and users who want a quick memory challenge that works on mobile, tablet, desktop, mouse, touch, or keyboard.
 
 ## User Stories
 
@@ -132,6 +139,16 @@ The layout is mobile-first. The board keeps a square aspect ratio, controls rema
 - Visible focus states make keyboard navigation clear.
 - Feedback text explains success, mistakes, lives, and next steps without relying only on colour.
 
+## Technologies Used
+
+- HTML5 for semantic structure.
+- CSS3 for responsive layout, game tile styling, focus states, and retro arcade presentation.
+- JavaScript for game state, sequence playback, input validation, scoring, local storage, and live UI updates.
+- Git and GitHub for version control.
+- GitHub Pages for deployment.
+- Microsoft Edge headless automation for final screenshots, browser console evidence, deployed-site checks, and responsive evidence.
+- Node.js `node --check` for JavaScript syntax checking.
+
 ## JavaScript Logic
 
 The game logic lives in [assets/js/script.js](assets/js/script.js).
@@ -176,6 +193,7 @@ The testing document includes:
 - Game functionality testing.
 - Responsive testing.
 - Keyboard testing.
+- Browser console and deployed-site testing.
 - Bugs and fixes.
 - Local validation checks.
 
@@ -198,7 +216,19 @@ Evidence folders are prepared under [docs/evidence](docs/evidence):
 
 ### Game Interface Evidence
 
+![Homepage screenshot](docs/evidence/screenshots/homepage.png)
+
 ![Desktop game section screenshot](docs/evidence/screenshots/game-section-desktop.png)
+
+![Final game section screenshot](docs/evidence/screenshots/game-section.png)
+
+![Difficulty selection screenshot](docs/evidence/screenshots/difficulty-selection.png)
+
+![Game in progress screenshot](docs/evidence/screenshots/game-in-progress.png)
+
+![Game over state screenshot](docs/evidence/screenshots/game-over-state.png)
+
+![High score screenshot](docs/evidence/screenshots/high-score.png)
 
 ![Scores section screenshot](docs/evidence/screenshots/scores-section-desktop.png)
 
@@ -213,6 +243,11 @@ Evidence folders are prepared under [docs/evidence](docs/evidence):
 Supporting validation files:
 
 - [Local validation notes](docs/evidence/validation/local-validation-results.md)
+- [Final validation summary](docs/evidence/validation/final-validation-summary.md)
+- [HTML validation local check](docs/evidence/html-validation/html-validation-local-check.md)
+- [CSS validation local check](docs/evidence/css-validation/css-validation-local-check.md)
+- [JavaScript syntax check](docs/evidence/javascript/javascript-syntax-check.md)
+- [Browser console check](docs/evidence/console/browser-console-check.md)
 - [Local validation HTML view](docs/evidence/validation/local-validation-results.html)
 
 ### Lighthouse Evidence
@@ -235,8 +270,28 @@ Supporting Lighthouse reports:
 Supporting testing files:
 
 - [Testing documentation](docs/testing.md)
+- [Final functionality evidence](docs/evidence/manual-testing/final-functionality-evidence.md)
+- [Responsive evidence](docs/evidence/responsive/responsive-evidence.md)
+- [Deployment evidence](docs/evidence/deployment/deployment-evidence.md)
+- [Final link check](docs/evidence/manual-testing/final-link-check.md)
 - [Gameplay regression report](docs/gameplay-regression-report.md)
 - [First-time playtest report](docs/playtest-report.md)
+
+### Final Responsive and Deployment Evidence
+
+![Mobile responsive screenshot](docs/evidence/responsive/mobile-view.png)
+
+![Tablet responsive screenshot](docs/evidence/responsive/tablet-view.png)
+
+![Desktop responsive screenshot](docs/evidence/responsive/desktop-view.png)
+
+![Deployed live site screenshot](docs/evidence/deployment/deployed-live-site.png)
+
+![404 page screenshot](docs/evidence/deployment/404-page.png)
+
+## Bugs and Fixes
+
+Known bugs and fixes are documented in [docs/testing.md](docs/testing.md#bugs-and-fixes). No known unresolved bugs remain at the time of the final assessment check.
 
 ## Deployment
 

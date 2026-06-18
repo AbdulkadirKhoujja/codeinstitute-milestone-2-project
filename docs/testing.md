@@ -63,6 +63,32 @@ The following checks were performed locally against the current HTML, CSS, and J
 | FUNC-10 | High score save | Finish with a score above the stored high score | High score updates in both displayed areas |
 | FUNC-11 | High score clear | Press Clear High Score and confirm | Stored score resets to zero and UI updates |
 
+## Final Assessment Test Evidence Matrix
+
+These checks were completed on 2026-06-18 with headless Microsoft Edge automation and local source checks.
+
+| Test Area | Action | Expected Result | Actual Result | Pass/Fail | Evidence File |
+| --- | --- | --- | --- | --- | --- |
+| Functionality | Load homepage | Homepage renders with Pixel Quest content | Homepage rendered | Pass | `docs/evidence/screenshots/homepage.png` |
+| Functionality | Open game section | Board, status values, controls, and difficulty selector are visible | Game section rendered | Pass | `docs/evidence/screenshots/game-section.png` |
+| Functionality | Change difficulty | Lives/scoring mode updates before game start | Difficulty evidence captured | Pass | `docs/evidence/screenshots/difficulty-selection.png` |
+| Functionality | Start game and wait for turn | Sequence playback completes and player input unlocks | In-progress evidence captured | Pass | `docs/evidence/screenshots/game-in-progress.png` |
+| Functionality | Click tile before Start | Input is blocked with helpful message | Message asked player to press Start | Pass | `docs/evidence/console/browser-console-check.md` |
+| Functionality | Click tile during playback | Input is blocked until playback ends | Message asked player to watch sequence | Pass | `docs/evidence/console/browser-console-check.md` |
+| Functionality | Fast-click tiles during a run | One click path is handled at a time and state remains stable | No console errors or state break captured | Pass | `docs/evidence/console/browser-console-check.md` |
+| Functionality | Reset during gameplay | Score, round, sequence, timers, and controls reset | Reset check passed | Pass | `docs/evidence/console/browser-console-check.md` |
+| Functionality | Start Easy, Normal, and Hard | Each mode starts, plays one sequence, and resets | All three difficulty checks passed | Pass | `docs/evidence/console/browser-console-check.md` |
+| Functionality | Capture game over state | End-state/game-over area can be evidenced | Game over screenshot captured | Pass | `docs/evidence/screenshots/game-over-state.png` |
+| Functionality | Load high score state | Saved high score appears in score area | High score screenshot captured | Pass | `docs/evidence/screenshots/high-score.png` |
+| Responsive | Render mobile viewport | Layout remains usable at mobile width | Mobile screenshot captured | Pass | `docs/evidence/responsive/mobile-view.png` |
+| Responsive | Render tablet viewport | Layout remains usable at tablet width | Tablet screenshot captured | Pass | `docs/evidence/responsive/tablet-view.png` |
+| Responsive | Render desktop viewport | Desktop layout uses available space | Desktop screenshot captured | Pass | `docs/evidence/responsive/desktop-view.png` |
+| Browser | Run automated browser console check | No runtime exceptions or browser log errors | Zero errors captured | Pass | `docs/evidence/console/browser-console-check.md` |
+| Keyboard | Focus Start button and capture focus state | Visible keyboard focus is present | Focus screenshot captured | Pass | `docs/evidence/manual-testing/keyboard-focus-testing.png` |
+| Accessibility | Use ARIA status regions and keyboard-usable buttons/tiles | Dynamic status and tile controls are accessible | Markup and browser checks passed | Pass | `docs/evidence/console/browser-console-check.md` |
+| Deployed Site | Load GitHub Pages URL | Live site loads Pixel Quest homepage | Deployed screenshot captured | Pass | `docs/evidence/deployment/deployed-live-site.png` |
+| 404 Handling | Load 404 page | Clear not-found page includes homepage link | 404 screenshot captured | Pass | `docs/evidence/deployment/404-page.png` |
+
 ## Responsive Testing
 
 | Test ID | Viewport | Checks Performed | Result | Evidence |
@@ -98,6 +124,18 @@ Keyboard evidence is saved in `docs/evidence/manual-testing/keyboard-focus-game-
 | BUG-03 | Clear high score deleted immediately | The action had no confirmation step | Added confirmation prompt and no-score message | Fixed |
 | BUG-04 | Some dynamic status updates were visual only | Status values changed on screen but were not summarized for assistive technology | Added ARIA live status region and screen-reader-only status announcer | Fixed |
 | BUG-05 | Small mobile widths risked cramped tile sizing | Game board used fixed tile minimums below 360px | Added fluid board width and mobile-specific square sizing | Fixed |
+| BUG-06 | Browser tab icon was unreliable on GitHub Pages | Some browsers ignored the SVG-only favicon or requested root `favicon.ico` | Added PNG favicon fallbacks, Apple touch icon, and root `favicon.ico` | Fixed |
+| BUG-07 | Lecturer feedback noted `aria-disabled` alone does not block clicks | Visual disabled state was not enough as a JavaScript interaction contract | Centralized tile input guards and timer cancellation so pre-start, playback, fast-click, reset, and difficulty transitions are blocked in code | Fixed |
+
+No known unresolved bugs remain at the time of the final assessment check.
+
+## Broken Links and Source Clean-Up
+
+| Area | Action | Expected Result | Actual Result | Status | Evidence File |
+| --- | --- | --- | --- | --- | --- |
+| Internal links | Check favicon, stylesheet, and anchor paths from `index.html` | Paths resolve locally | All checked paths passed | Pass | `docs/evidence/manual-testing/final-link-check.md` |
+| External links | Check HTML for `target="_blank"` links | Any new-tab links include `rel="noopener noreferrer"` | No `target="_blank"` links are present in `index.html` or `404.html` | Pass | `docs/evidence/manual-testing/final-link-check.md` |
+| Commented-out code | Search source files for HTML/CSS/JS commented-out code | No unnecessary commented-out code remains | Only intentional JavaScript section comments found | Pass | `docs/evidence/manual-testing/final-link-check.md` |
 
 ## Local Validation Checks
 
