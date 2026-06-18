@@ -4,12 +4,7 @@ File checked: index.html
 Command:
 curl.exe -sS --max-time 60 -H "Content-Type: text/html; charset=utf-8" --data-binary "@index.html" "https://validator.w3.org/nu/?out=json"
 
-Result: Validation ran successfully, but index.html did not pass.
+Result: Validation ran successfully. No messages were returned.
 
-Official validator response summary:
-- version: 26.6.14
-- messages: 1
-- type: error
-- location: line 60, column 75
-- message: The aria-label attribute must not be specified on any div element unless the element has a role value other than caption, code, deletion, emphasis, generic, insertion, paragraph, presentation, strong, subscript, or superscript.
-- extract: <div class="game-board" aria-label="Memory game tiles">
+Official validator response:
+{"version":"26.6.14","messages":[]}

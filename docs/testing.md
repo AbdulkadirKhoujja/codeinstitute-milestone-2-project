@@ -154,7 +154,7 @@ Fresh official W3C validation checks were run on 2026-06-18:
 
 | Check | Evidence | Result |
 | --- | --- | --- |
-| W3C Nu HTML Validator for `index.html` | `docs/evidence/html-validation/w3c-html-final-index.txt` | Did not pass; one `aria-label` on `div.game-board` needs a suitable role or removal |
+| W3C Nu HTML Validator for `index.html` | `docs/evidence/html-validation/w3c-html-final-index.txt` | Pass, no messages returned |
 | W3C Nu HTML Validator for `404.html` | `docs/evidence/html-validation/w3c-html-final-404.txt` | Pass, no messages returned |
 | W3C CSS Validator for `assets/css/style.css` | `docs/evidence/css-validation/w3c-css-final-style-css.txt` | Pass, validity true with level 0 warnings |
 
