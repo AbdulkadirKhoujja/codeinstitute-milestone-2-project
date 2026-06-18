@@ -4,7 +4,7 @@ This document records testing for Pixel Quest Memory Game. Tests are grouped by 
 
 ## Part 1 Browser Smoke Checks
 
-These checks cover the first playable build only. Full validation, Lighthouse evidence, and assessment-ready testing evidence are intentionally left for Part 2.
+These checks cover the first playable build. Final validation, Lighthouse evidence, and assessment-ready testing evidence are recorded in the later sections of this document.
 
 | Area | Check | Expected Result | Status |
 | --- | --- | --- | --- |
@@ -148,7 +148,7 @@ Local checks were run during Part 2 and recorded in [local-validation-results.md
 | ARIA/live-region markup spot check | Pass |
 | File naming spot check | Pass with `README.md` noted as the required conventional exception |
 
-W3C validation screenshots, Lighthouse reports, and Lighthouse summary screenshots have been generated and embedded in `README.md`.
+W3C validation screenshots, Lighthouse reports, and Lighthouse summary screenshots are embedded in `README.md`. Final local validation follow-up notes are recorded in `docs/evidence/validation/final-validation-summary.md`, including the timed-out fresh `html-validate` attempt.
 
 ## Gameplay Regression Re-Test
 

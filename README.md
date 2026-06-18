@@ -291,7 +291,19 @@ Supporting testing files:
 
 ## Bugs and Fixes
 
-Known bugs and fixes are documented in [docs/testing.md](docs/testing.md#bugs-and-fixes). No known unresolved bugs remain at the time of the final assessment check.
+Known bugs and fixes are also documented in [docs/testing.md](docs/testing.md#bugs-and-fixes).
+
+| Bug ID | Issue | Fix | Status |
+| --- | --- | --- | --- |
+| BUG-01 | Tiles gave no helpful feedback before the game started | Added JavaScript guard messages for blocked tile actions | Fixed |
+| BUG-02 | Reset during sequence playback could allow stale playback to continue | Added playback id checks and timer cancellation | Fixed |
+| BUG-03 | Clear high score deleted immediately | Added a confirmation prompt and no-score message | Fixed |
+| BUG-04 | Dynamic status updates were visual only | Added ARIA live status regions and screen-reader status text | Fixed |
+| BUG-05 | Small mobile widths risked cramped tile sizing | Added fluid board sizing and mobile-specific CSS | Fixed |
+| BUG-06 | Favicon was unreliable on GitHub Pages | Added SVG, PNG, Apple touch, and root ICO fallbacks | Fixed |
+| BUG-07 | `aria-disabled` alone does not prevent clicks | Added JavaScript input guards for pre-start, playback, fast-click, reset, and round transitions | Fixed |
+
+No known unresolved bugs remain at the time of the final assessment check.
 
 ## Deployment
 
