@@ -262,7 +262,7 @@ No code was reused from the previous gym website project.
 
 No external images, fonts, icons, audio, or game assets are used in the current project build.
 
-The favicon was custom-created for Pixel Quest as a lightweight SVG inspired by the game's memory tiles.
+The favicon was custom-created for Pixel Quest as a lightweight SVG inspired by the game's memory tiles, with PNG and ICO fallbacks for broader browser support.
 
 ### Learning References
 
