@@ -211,6 +211,10 @@ p {
     max-width: 720px;
 }
 
+.not-found-hero {
+    min-height: calc(100vh - 9rem);
+}
+
 .hero-intro {
     max-width: 36rem;
     margin-bottom: 1.5rem;

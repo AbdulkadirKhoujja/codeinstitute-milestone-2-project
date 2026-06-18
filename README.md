@@ -77,6 +77,7 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 - Keyboard-accessible controls and tiles.
 - ARIA live feedback for dynamic game messages and status changes.
 - Responsive layout for mobile, tablet, and desktop screens.
+- Custom GitHub Pages 404 page with a clear route back to the homepage.
 
 ### Future Features
 
@@ -249,6 +250,10 @@ The project is deployed with GitHub Pages because it is a static HTML, CSS, and 
 ### Live Site
 
 `https://abdulkadirkhoujja.github.io/codeinstitute-milestone-2-project/`
+
+### 404 Page
+
+GitHub Pages serves [404.html](404.html) for non-existent project URLs. The page uses the same Pixel Quest visual style and includes a clear link back to the homepage.
 
 ### Repository
 

@@ -27,6 +27,7 @@ These checks cover the first playable build only. Full validation, Lighthouse ev
 | NAV-03 | Navigation | Activate Play Game nav link | Browser moves to game section | Section anchor works locally | Pass |
 | NAV-04 | Navigation | Activate Scores nav link | Browser moves to scores section | Section anchor works locally | Pass |
 | NAV-05 | Navigation | Activate About nav link | Browser moves to about section | Section anchor works locally | Pass |
+| NAV-06 | 404 navigation | Activate Back to Home link on 404 page | Browser returns to homepage | Link points to `index.html#home` | Pass |
 | GAME-01 | Start | Select Normal and press Start | Round 1 begins and sequence plays | Game starts and feedback updates | Pass |
 | GAME-02 | Difficulty | Select Easy before starting | Lives update to 5 | Lives display updates | Pass |
 | GAME-03 | Difficulty | Select Hard before starting | Lives update to 2 | Lives display updates | Pass |
@@ -42,6 +43,7 @@ These checks cover the first playable build only. Full validation, Lighthouse ev
 | RESP-01 | Mobile | Review at 320px width | Board fits screen and controls remain usable | CSS supports narrow board sizing | Pass |
 | RESP-02 | Tablet | Review at tablet width | Instructions and layout use available space | Tablet breakpoint applies | Pass |
 | RESP-03 | Desktop | Review at desktop width | Game board and panel sit side by side | Desktop breakpoint applies | Pass |
+| DEPLOY-01 | 404 page | Visit a non-existent project page | GitHub Pages shows a clear not-found page with a homepage link | Local 404 page exists and matches project styling | Pass |
 
 ## Game Functionality Testing
 
