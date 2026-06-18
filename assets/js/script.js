@@ -15,7 +15,9 @@ const heroStartLink = document.querySelector("#hero-start-link");
 const gameSection = document.querySelector("#play-game");
 const highScoreStorageKey = "pixelQuestHighScore";
 const tileNames = ["cyan", "pink", "yellow", "green"];
+const activeTimers = new Map();
 
+// Difficulty settings control lives, sequence speed, and scoring.
 const difficultySettings = {
     easy: {
         lives: 5,
@@ -51,6 +53,7 @@ const gameState = {
     playbackId: 0
 };
 
+// UI rendering helpers keep visual and assistive status in sync.
 function setTilesDisabled(isDisabled) {
     gameTiles.forEach((tile) => {
         tile.setAttribute("aria-disabled", String(isDisabled));
@@ -76,10 +79,18 @@ function clearTileHighlights() {
     });
 }
 
+function cancelPendingTimers() {
+    activeTimers.forEach((cancelTimer) => {
+        cancelTimer();
+    });
+    activeTimers.clear();
+}
+
 function isCurrentRun(runId) {
     return runId === gameState.playbackId && gameState.isPlaying;
 }
 
+// High score helpers use localStorage for repeat visits on the same browser.
 function loadHighScore() {
     const savedScore = Number(localStorage.getItem(highScoreStorageKey));
 
@@ -114,7 +125,9 @@ function clearHighScore() {
     renderStatus();
 }
 
+// Game state helpers reset or extend the current memory sequence.
 function resetGame() {
+    cancelPendingTimers();
     gameState.sequence = [];
     gameState.playerInput = [];
     gameState.score = 0;
@@ -140,12 +153,22 @@ function generateNextStep() {
     gameState.round = gameState.sequence.length;
 }
 
-function wait(ms) {
+function wait(ms, runId = gameState.playbackId) {
     return new Promise((resolve) => {
-        setTimeout(resolve, ms);
+        const timerId = setTimeout(() => {
+            activeTimers.delete(timerId);
+            resolve(runId === gameState.playbackId);
+        }, ms);
+
+        activeTimers.set(timerId, () => {
+            clearTimeout(timerId);
+            activeTimers.delete(timerId);
+            resolve(false);
+        });
     });
 }
 
+// Playback flashes one tile per sequence step and only unlocks input afterward.
 async function flashTile(tileIndex, runId = gameState.playbackId) {
     if (runId !== gameState.playbackId) {
         return false;
@@ -154,17 +177,26 @@ async function flashTile(tileIndex, runId = gameState.playbackId) {
     const tile = gameTiles[tileIndex];
 
     tile.classList.remove("is-active");
-    await wait(40);
+    const pauseBeforeFlash = await wait(40, runId);
 
-    if (runId !== gameState.playbackId) {
+    if (!pauseBeforeFlash || runId !== gameState.playbackId) {
         return false;
     }
 
     tile.classList.add("is-active");
-    await wait(difficultySettings[gameState.difficulty].tileDuration);
+    const flashCompleted = await wait(difficultySettings[gameState.difficulty].tileDuration, runId);
     tile.classList.remove("is-active");
 
-    await wait(80);
+    if (!flashCompleted) {
+        return false;
+    }
+
+    const pauseAfterFlash = await wait(80, runId);
+
+    if (!pauseAfterFlash) {
+        return false;
+    }
+
     return runId === gameState.playbackId;
 }
 
@@ -178,7 +210,11 @@ async function playSequence(runId = gameState.playbackId) {
     setTilesDisabled(true);
     setGameMessage(`Round ${gameState.round}. Watch the sequence...`);
 
-    await wait(800);
+    const introPauseCompleted = await wait(800, runId);
+
+    if (!introPauseCompleted || !isCurrentRun(runId)) {
+        return false;
+    }
 
     for (const tileIndex of gameState.sequence) {
         if (!isCurrentRun(runId)) {
@@ -191,7 +227,11 @@ async function playSequence(runId = gameState.playbackId) {
             return false;
         }
 
-        await wait(difficultySettings[gameState.difficulty].playbackDelay);
+        const stepDelayCompleted = await wait(difficultySettings[gameState.difficulty].playbackDelay, runId);
+
+        if (!stepDelayCompleted) {
+            return false;
+        }
     }
 
     if (!isCurrentRun(runId)) {
@@ -202,6 +242,26 @@ async function playSequence(runId = gameState.playbackId) {
     gameState.isAcceptingInput = true;
     setGameMessage("Your turn: repeat the pattern.");
     setTilesDisabled(false);
+    return true;
+}
+
+// Player input handlers guard against pre-start, playback, and rapid duplicate clicks.
+function canAcceptTileInput() {
+    if (!gameState.isPlaying) {
+        setGameMessage("Press Start before choosing tiles.");
+        return false;
+    }
+
+    if (gameState.isShowingSequence) {
+        setGameMessage("Watch the full sequence first, then repeat it.");
+        return false;
+    }
+
+    if (!gameState.isAcceptingInput) {
+        setGameMessage("Hold on, wait for your turn prompt.");
+        return false;
+    }
+
     return true;
 }
 
@@ -235,9 +295,9 @@ async function completeRound() {
     setGameMessage(`Nice! Round ${gameState.round} complete. You earned ${pointsEarned} points.`);
     renderStatus();
 
-    await wait(1100);
+    const roundPauseCompleted = await wait(1100, runId);
 
-    if (!isCurrentRun(runId)) {
+    if (!roundPauseCompleted || !isCurrentRun(runId)) {
         return;
     }
 
@@ -251,6 +311,7 @@ function endGame(runId = gameState.playbackId) {
         return;
     }
 
+    cancelPendingTimers();
     saveHighScore();
     gameState.isPlaying = false;
     gameState.isShowingSequence = false;
@@ -278,9 +339,9 @@ async function handleWrongInput() {
 
     gameState.playerInput = [];
     setGameMessage(`Not quite, you lost one life. ${gameState.lives} lives left. Watch again.`);
-    await wait(1500);
+    const replayPauseCompleted = await wait(1500, runId);
 
-    if (!isCurrentRun(runId)) {
+    if (!replayPauseCompleted || !isCurrentRun(runId)) {
         return;
     }
 
@@ -288,23 +349,21 @@ async function handleWrongInput() {
 }
 
 async function handleTileClick(event) {
-    if (!gameState.isPlaying) {
-        setGameMessage("Press Start before choosing tiles.");
-        return;
-    }
+    event.preventDefault();
 
-    if (gameState.isShowingSequence) {
-        setGameMessage("Watch the full sequence first, then repeat it.");
-        return;
-    }
-
-    if (!gameState.isAcceptingInput) {
-        setGameMessage("Hold on, wait for your turn prompt.");
+    if (!canAcceptTileInput()) {
         return;
     }
 
     const runId = gameState.playbackId;
     const selectedTile = Number(event.currentTarget.dataset.tile);
+
+    if (!Number.isInteger(selectedTile)) {
+        setGameMessage("That tile is not available. Try another tile.");
+        gameState.isAcceptingInput = true;
+        setTilesDisabled(false);
+        return;
+    }
 
     gameState.isAcceptingInput = false;
     gameState.playerInput.push(selectedTile);
@@ -332,6 +391,7 @@ async function handleTileClick(event) {
 }
 
 async function startGame() {
+    cancelPendingTimers();
     gameState.playbackId += 1;
     gameState.sequence = [];
     gameState.playerInput = [];
@@ -351,6 +411,7 @@ async function startGame() {
     await playSequence(gameState.playbackId);
 }
 
+// Event wiring initializes stored score, controls, and tile interaction.
 async function handleHeroStart(event) {
     event.preventDefault();
     gameSection.scrollIntoView({ behavior: "smooth", block: "start" });
