@@ -91,11 +91,17 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 
 ### Wireframes
 
-No original hand-drawn or PDF wireframes were present in the repository. The visual below is a generated wireframe-style preview based on the current project layout, included to make the page structure visible directly in the README.
+No original hand-drawn or PDF wireframes were present in the repository. The visuals below are generated wireframe-style previews based on the planned and final project layout, included to make the page structure visible directly in the README.
 
 ![Generated Pixel Quest wireframe preview](docs/evidence/planning/wireframes-preview.png)
 
+![Desktop Pixel Quest wireframe](docs/evidence/planning/desktop-wireframe.png)
+
+![Mobile Pixel Quest wireframe](docs/evidence/planning/mobile-wireframe.png)
+
 Supporting file: [wireframes-preview.html](docs/evidence/planning/wireframes-preview.html)
+
+The desktop wireframe plans a wide game area with the tile board and controls side by side so status values can be scanned while playing. The mobile wireframe stacks the same content vertically so the board, feedback, and controls remain touch-friendly without horizontal scrolling. The final implementation follows this structure through the `.game-shell`, `.game-board`, `.game-panel`, and responsive media queries in `assets/css/style.css`.
 
 ## UX Design
 
