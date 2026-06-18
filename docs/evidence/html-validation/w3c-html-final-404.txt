@@ -1,0 +1,10 @@
+W3C Nu HTML Validator final check
+Date run: 2026-06-18
+File checked: 404.html
+Command:
+curl.exe -sS --max-time 60 -H "Content-Type: text/html; charset=utf-8" --data-binary "@404.html" "https://validator.w3.org/nu/?out=json"
+
+Result: Validation ran successfully. No messages were returned.
+
+Official validator response:
+{"version":"26.6.14","messages":[]}

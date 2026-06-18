@@ -1,0 +1,17 @@
+W3C CSS Validator final check
+Date run: 2026-06-18
+File checked: assets/css/style.css
+Command:
+curl.exe -sS --max-time 60 -F "file=@assets/css/style.css;type=text/css" -F "output=json" "https://jigsaw.w3.org/css-validator/validator"
+
+Result: Validation ran successfully. CSS validity was true.
+
+Official validator summary:
+- checkedby: http://www.w3.org/2005/07/css-validator
+- csslevel: css3
+- validity: true
+- errorcount: 0
+- warningcount: 49
+
+Warning note:
+The warnings are level 0 validator notes, mainly that CSS custom properties are dynamic and not statically checked. One level 0 warning notes that the `clip` property used in the `.sr-only` accessibility helper is deprecated.
