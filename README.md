@@ -58,7 +58,7 @@ The project is being created for Code Institute Project 2: Interactive Frontend 
 - Demonstrate meaningful user interaction and dynamic front-end responses.
 - Keep the interface easy to navigate.
 - Store a high score locally for repeat play.
-- Build a project that can be deployed to GitHub Pages.
+- Maintain a deployed GitHub Pages version for final assessment review.
 
 ## Features
 
@@ -233,7 +233,7 @@ Supporting testing files:
 
 ## Deployment
 
-The project is designed to be deployed with GitHub Pages because it is a static HTML, CSS, and JavaScript site.
+The project is deployed with GitHub Pages because it is a static HTML, CSS, and JavaScript site.
 
 ### GitHub Pages Steps
 
@@ -249,6 +249,12 @@ The project is designed to be deployed with GitHub Pages because it is a static 
 ### Live Site
 
 `https://abdulkadirkhoujja.github.io/codeinstitute-milestone-2-project/`
+
+### Repository
+
+`https://github.com/AbdulkadirKhoujja/codeinstitute-milestone-2-project`
+
+The deployed GitHub Pages version has been checked against the local development version so the final assessment site matches the committed project files.
 
 ## Credits and Attribution
 
